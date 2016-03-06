@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WNb-AJ-ynP">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HappierWakeUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
+                                <rect key="frame" x="20" y="140" width="560" height="267"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I want to wake up at" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3w-RE-rk0">
+                                        <rect key="frame" x="204" y="0.0" width="152" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-sg-sxb">
+                                        <rect key="frame" x="120" y="21" width="320" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="478968872.388708">
+                                            <!--2016-03-06 14:54:32 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5R-ix-Ouo">
+                                        <rect key="frame" x="265" y="237" width="30" height="30"/>
+                                        <state key="normal" title="Set"/>
+                                        <connections>
+                                            <action selector="setAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sxi-B8-bMk"/>
+                                            <segue destination="OLW-h4-3OA" kind="show" id="Qek-VP-iv1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kb5-Zs-ham" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2Rd-yr-3jB"/>
+                            <constraint firstItem="kb5-Zs-ham" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="SGE-WP-RLt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kb5-Zs-ham" secondAttribute="trailing" id="hxO-Dc-s6k"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VGs-Ml-1kc"/>
+                    <connections>
+                        <outlet property="setWakeUp" destination="k5R-ix-Ouo" id="wf4-RA-U13"/>
+                        <outlet property="timeToWakeUp" destination="PFR-sg-sxb" id="EGD-Md-T3t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="372"/>
+        </scene>
+        <!--Current Wake Up View Controller-->
+        <scene sceneID="lyJ-s6-vZF">
+            <objects>
+                <viewController id="OLW-h4-3OA" customClass="CurrentWakeUpViewController" customModule="HappierWakeUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V5M-6F-al1"/>
+                        <viewControllerLayoutGuide type="bottom" id="kKs-sz-SHj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x3A-Yl-onC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cvm-K1-SWT">
+                                <rect key="frame" x="20" y="220" width="560" height="41"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQK-47-bpO">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riM-J4-ad1">
+                                        <rect key="frame" x="0.0" y="21" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cvm-K1-SWT" secondAttribute="trailing" id="6K1-KA-kcP"/>
+                            <constraint firstItem="Cvm-K1-SWT" firstAttribute="top" secondItem="V5M-6F-al1" secondAttribute="bottom" constant="10" id="VVQ-9W-4ur"/>
+                            <constraint firstItem="Cvm-K1-SWT" firstAttribute="leading" secondItem="x3A-Yl-onC" secondAttribute="leadingMargin" id="l2t-G6-Ck0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goToBedInLabel" destination="cQK-47-bpO" id="r64-S1-quu"/>
+                        <outlet property="wakeUpAtLabel" destination="riM-J4-ad1" id="P7P-sB-3Bu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="api-bG-ghQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1802" y="387"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dtQ-92-9U5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WNb-AJ-ynP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FTw-sJ-O6K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="emx-OR-5Qa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kP8-hw-w8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146" y="-320"/>
+        </scene>
+    </scenes>
+</document>
