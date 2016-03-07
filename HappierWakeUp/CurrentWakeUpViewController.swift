@@ -7,17 +7,19 @@
 //
 import UIKit
 
-class CurrentWakeUpViewController: UIViewController {
+class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //TODO make sure currentWakeUp at a got point on navigating
-        goToBedInLabel.text = "Go to bed in \(currentWakeUp.goToBedInString())"
-        
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(currentWakeUp.wakeUpTime))"
+
+        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
+        if notifications?.count > 0 {
+
+            //TODO something reliable
+            currentWakeUp = WakeUp(wakeUpTime: (notifications![0]).fireDate!)
+            updateViewWithWakeUp(currentWakeUp)
+        }
         // Do any additional setup after loading the view, typically from a nib.
 
     }
@@ -27,10 +29,35 @@ class CurrentWakeUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func editWakeUp(sender: AnyObject) {
+        navigateToEditWakeUpViewWith(currentWakeUp)
+    }
+    
     @IBOutlet weak var goToBedInLabel: UILabel!
     
     @IBOutlet weak var wakeUpAtLabel: UILabel!
-    var currentWakeUp: WakeUp = WakeUp(wakeUpTime: NSDate())
+
+    var currentWakeUp: WakeUp!
+
+    func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
+        viewController.wakeUp = wakeUp
+        viewController.delegate = self
+        self.presentViewController(viewController, animated: true){}
+    
+    }
+    
+    func updateViewWithWakeUp(wakeUp: WakeUp) {
+        goToBedInLabel.text = "Go to bed in \(wakeUp.goToBedInString())"
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(wakeUp.wakeUpTime))"
+    }
+    
+    func wakeUpWasSetTo(wakeUp: WakeUp) {
+        currentWakeUp = wakeUp
+        updateViewWithWakeUp(currentWakeUp)
+    }
 
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 struct WakeUp {
-    var wakeUpTime: NSDate
+    let wakeUpTime: NSDate
     
     func goToBedTime() -> NSDate {
         return wakeUpTime.dateByAddingTimeInterval(-8 * 60 * 60)
@@ -30,12 +30,16 @@ struct WakeUp {
     
 }
 
+protocol getNotifiedOfWakeUp {
+    func wakeUpWasSetTo(wakeUp: WakeUp)
+}
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        timeToWakeUp.date = wakeUp.wakeUpTime
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,10 +48,25 @@ class ViewController: UIViewController {
     }
 
     @IBAction func setAlarm(sender: AnyObject) {
+        getPermissionForNotification()
+        //TODO make sure you have permission for notes or say something
+        
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+
+        let time = getWakeUpTimeInFuture(timeToWakeUp.date)
+        // TODO INTERVAL
+        SetNotification(time.dateByAddingTimeInterval(-15), message: "Get ready for bed so you'll get enough sleep for tomorrow")
+        SetNotification(time, message: "It's time to wake up")
+        wakeUp = WakeUp(wakeUpTime: time)
+        delegate?.wakeUpWasSetTo(WakeUp(wakeUpTime: time))
+        dismissViewControllerAnimated(true){}
     }
+    
+    var delegate: getNotifiedOfWakeUp?
     
     @IBOutlet weak var setWakeUp: UIButton!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
+    
     func SetNotification(time: NSDate, message: String) {
         let wakeUpNotification = UILocalNotification()
         wakeUpNotification.fireDate = time
@@ -55,29 +74,9 @@ class ViewController: UIViewController {
         wakeUpNotification.alertAction = "Happy wake up"
         wakeUpNotification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().scheduleLocalNotification(wakeUpNotification)
-        
     }
     
-    var wakeUp: WakeUp?
-    
-    func setWakeUpForTime() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        let time = getWakeUpTimeInFuture(timeToWakeUp.date)
-        // TODO INTERVAL
-        SetNotification(time.dateByAddingTimeInterval(-15), message: "Get ready for bed so you'll get enough sleep for tomorrow")
-        SetNotification(time, message: "It's time to wake up")
-        wakeUp = WakeUp(wakeUpTime: time)
-    
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if setWakeUp === sender {
-            //TODO maybe remove seque and navigate in click handler only if notification set succesfullly. Also check if have permission for notifications or say something
-            let destination = segue.destinationViewController as! CurrentWakeUpViewController
-            setWakeUpForTime()
-            destination.currentWakeUp = wakeUp!
-        }
-    }
+    var wakeUp: WakeUp!
     
     func getWakeUpTimeInFuture(time: NSDate) -> NSDate {
         if NSDate().compare(time) == NSComparisonResult.OrderedDescending {
@@ -87,6 +86,10 @@ class ViewController: UIViewController {
         return time
     }
     
+    func getPermissionForNotification() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Badge, .Sound]), categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+    }
     
 }
 
