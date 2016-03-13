@@ -7,12 +7,29 @@
 //
 import UIKit
 
+extension UIView {
+    func layerGradient() {
+        let layer : CAGradientLayer = CAGradientLayer()
+        layer.frame.size = self.frame.size
+        layer.frame.origin = CGPointMake(0.0,0.0)
+        
+        let colorNight = UIColor(red: 0.0/255.0, green: 7.0/255.0, blue: 40.0/255.0, alpha: 1.0).CGColor
+        let colorDay = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).CGColor
+        let colorDawn = UIColor(red: 252.0/255.0, green: 248.0/255.0, blue: 106.0/255.0, alpha: 1.0).CGColor
+        
+        layer.colors = [colorNight, colorNight, colorDay, colorDay]
+        layer.locations = [0.0, 0.3, 0.6, 1.0]
+        self.layer.insertSublayer(layer, atIndex: 0)
+    }
+}
+
 class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        baseView.layerGradient()
         let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
         if notifications?.count > 0 {
 
@@ -32,6 +49,7 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet var baseView: UIView!
     @IBAction func editWakeUp(sender: AnyObject) {
         navigateToEditWakeUpViewWith(currentWakeUp)
     }
