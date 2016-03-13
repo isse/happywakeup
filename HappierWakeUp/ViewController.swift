@@ -9,7 +9,14 @@
 import UIKit
 
 struct WakeUp {
+    
+    init(_ time: NSDate) {
+        wakeUpTime = WakeUp.getWakeUpTimeInFuture(time)
+    }
+    
     let wakeUpTime: NSDate
+    let wakeUpText = "It's time to wake up"
+    let goToBedText = "Get ready for bed so you'll get enough sleep for tomorrow"
     
     func goToBedTime() -> NSDate {
         return wakeUpTime.dateByAddingTimeInterval(-8 * 60 * 60)
@@ -28,6 +35,42 @@ struct WakeUp {
         return String(format: "%0.2d h %0.2d min",hours,minutes)
     }
     
+    func getWakeUpNotification() -> UILocalNotification {
+        let time = WakeUp.getWakeUpTimeInFuture(wakeUpTime)
+        return WakeUp.notificationForWakeUp(time, message: wakeUpText)
+    }
+
+    func getGoToBedNotification() -> UILocalNotification {
+        let time = WakeUp.getWakeUpTimeInFuture(wakeUpTime).dateByAddingTimeInterval(-15)
+        return WakeUp.notificationForWakeUp(time, message: goToBedText)
+    }
+    
+    static func notificationForWakeUp(time: NSDate, message: String) -> UILocalNotification {
+        let notification = UILocalNotification()
+        notification.fireDate = time
+        notification.alertBody = message
+        notification.alertAction = "Happy wake up"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        return notification
+    }
+
+    static func getWakeUpTimeInFuture(time: NSDate) -> NSDate {
+        // TODO maybe not elegant
+        let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
+        let now = NSDate()
+        let dateFlags : NSCalendarUnit = [.Day, .Month, .Year]
+        let nowComponents = calendar.components(dateFlags, fromDate: now)
+        let timeFlags : NSCalendarUnit = [.Hour, .Minute]
+        let wakeUpComponents = calendar.components(timeFlags, fromDate: time)
+        nowComponents.setValue(wakeUpComponents.hour, forComponent: .Hour)
+        nowComponents.setValue(wakeUpComponents.minute, forComponent: .Minute)
+        let wakeUpFromNow = (calendar.dateFromComponents(nowComponents))!
+        if NSDate().compare(wakeUpFromNow) == NSComparisonResult.OrderedDescending {
+            return wakeUpFromNow.dateByAddingTimeInterval(24 * 60 * 60)
+        }
+        return wakeUpFromNow
+    }
+
 }
 
 protocol getNotifiedOfWakeUp {
@@ -48,18 +91,22 @@ class ViewController: UIViewController {
     }
 
     @IBAction func setAlarm(sender: AnyObject) {
-        getPermissionForNotification()
-        //TODO make sure you have permission for notes or say something
-        
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-
-        let time = getWakeUpTimeInFuture(timeToWakeUp.date)
-        // TODO INTERVAL
-        SetNotification(time.dateByAddingTimeInterval(-15), message: "Get ready for bed so you'll get enough sleep for tomorrow")
-        SetNotification(time, message: "It's time to wake up")
-        wakeUp = WakeUp(wakeUpTime: time)
-        delegate?.wakeUpWasSetTo(WakeUp(wakeUpTime: time))
-        dismissViewControllerAnimated(true){}
+        wakeUp = WakeUp(timeToWakeUp.date)
+        if ViewController.setWakeUpForTime(wakeUp) {
+            delegate?.wakeUpWasSetTo(wakeUp)
+            dismissViewControllerAnimated(true){}
+        }
+        // TODO or else?
+    }
+    static func setWakeUpForTime(wakeUp: WakeUp) -> Bool {
+        ViewController.getPermissionForNotification()
+        if ViewController.havePermissionForNotification() {
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+            ViewController.SetNotification(wakeUp.getGoToBedNotification())
+            ViewController.SetNotification(wakeUp.getWakeUpNotification())
+            return true
+        }
+        return false;
     }
     
     var delegate: getNotifiedOfWakeUp?
@@ -67,28 +114,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var setWakeUp: UIButton!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
     
-    func SetNotification(time: NSDate, message: String) {
-        let wakeUpNotification = UILocalNotification()
-        wakeUpNotification.fireDate = time
-        wakeUpNotification.alertBody = message
-        wakeUpNotification.alertAction = "Happy wake up"
-        wakeUpNotification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(wakeUpNotification)
+    
+    static func SetNotification(notification: UILocalNotification) {
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     var wakeUp: WakeUp!
     
-    func getWakeUpTimeInFuture(time: NSDate) -> NSDate {
-        if NSDate().compare(time) == NSComparisonResult.OrderedDescending {
-            return time.dateByAddingTimeInterval(24 * 60 * 60)
-        }
-        
-        return time
-    }
     
-    func getPermissionForNotification() {
+    static func getPermissionForNotification() {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Badge, .Sound]), categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+    }
+    
+    static func havePermissionForNotification() -> Bool {
+        let notificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        //TODO this ok?
+        return notificationSettings?.types.contains([.Alert, .Sound, .Badge]) === true
     }
     
 }

@@ -94,6 +94,12 @@
                                     <action selector="editWakeUp:" destination="OLW-h4-3OA" eventType="touchUpInside" id="Zam-A7-9ak"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-XS-iQU">
+                                <rect key="frame" x="276" y="471" width="51" height="31"/>
+                                <connections>
+                                    <action selector="wakeUpOnOffSet:" destination="OLW-h4-3OA" eventType="valueChanged" id="Ieo-yS-P6o"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -109,6 +115,7 @@
                     <connections>
                         <outlet property="goToBedInLabel" destination="cQK-47-bpO" id="r64-S1-quu"/>
                         <outlet property="wakeUpAtLabel" destination="riM-J4-ad1" id="P7P-sB-3Bu"/>
+                        <outlet property="wakeUpOn" destination="Dyh-XS-iQU" id="C2R-iv-1IL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="api-bG-ghQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

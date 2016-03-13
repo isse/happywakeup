@@ -17,8 +17,11 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         if notifications?.count > 0 {
 
             //TODO something reliable
-            currentWakeUp = WakeUp(wakeUpTime: (notifications![0]).fireDate!)
+            currentWakeUp = WakeUp((notifications![0]).fireDate!)
             updateViewWithWakeUp(currentWakeUp)
+        } else {
+            //TODO persisting data
+            navigateToEditWakeUpViewWith(WakeUp(NSDate()))
         }
         // Do any additional setup after loading the view, typically from a nib.
 
@@ -36,8 +39,13 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     @IBOutlet weak var goToBedInLabel: UILabel!
     
     @IBOutlet weak var wakeUpAtLabel: UILabel!
+    @IBOutlet weak var wakeUpOn: UISwitch!
 
-    var currentWakeUp: WakeUp!
+    @IBAction func wakeUpOnOffSet(sender: AnyObject) {
+            setWakeUpOnOff(wakeUpOn.on)
+    }
+    
+    var currentWakeUp = WakeUp(NSDate())
 
     func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
@@ -58,6 +66,15 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         currentWakeUp = wakeUp
         updateViewWithWakeUp(currentWakeUp)
     }
-
+    
+    func setWakeUpOnOff(on: Bool) {
+        goToBedInLabel.enabled = on
+        wakeUpAtLabel.enabled = on
+        if on {
+            ViewController.setWakeUpForTime(currentWakeUp)
+        } else {
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+        }
+    }
 }
 
