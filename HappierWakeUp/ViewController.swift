@@ -8,18 +8,122 @@
 
 import UIKit
 
-struct WakeUp {
+enum WakeUpAppError: ErrorType {
+    case InvalidHoursOfSleep(Int)
+    case InvalidTimeReadyForBed(Int)
+}
+
+enum HoursOfSleep: Int {
+    case Six = 6, Seven, Eight, Nine, Ten
     
-    init(_ time: NSDate) {
-        wakeUpTime = WakeUp.getWakeUpTimeInFuture(time)
+    func asTimeInterval() -> NSTimeInterval {
+        return NSTimeInterval(self.rawValue * 60 * 60)
     }
     
+    func toUIIndex() -> Int {
+        switch self {
+        case .Six:
+            return 0
+        case .Seven:
+            return 1
+        case .Eight:
+            return 2
+        case .Nine:
+            return 3
+        case .Ten:
+            return 4
+        default:
+            assert(false, "Unkown HoursOfSleep \(self.rawValue)")
+        }
+    }
+
+    static func fromIndex(index: Int) -> HoursOfSleep {
+        switch index {
+            case 0:
+                return .Six
+            case 1:
+                return .Seven
+            case 2:
+                return .Eight
+            case 3:
+                return .Nine
+            case 4:
+                return .Ten
+            default:
+                assert(false, "Invalid HoursOfSleep \(index)")
+        }
+    }
+}
+
+enum TimeReadyForBed: Int {
+    case Half = 30
+    case Hour = 60
+    case Two = 120
+    
+    func asTimeInterval() -> NSTimeInterval {
+        return NSTimeInterval(self.rawValue * 60)
+    }
+    func toUIIndex() -> Int {
+        switch self {
+            case .Half:
+                return 0
+            case .Hour:
+                return 1
+            case .Two:
+                return 2
+            default:
+                assert(false, "Unkown TimeReadyForBed \(self.rawValue)")
+            }
+    }
+    
+    static func fromIndex(index: Int) -> TimeReadyForBed {
+        switch index {
+        case 0:
+            return .Half
+        case 1:
+            return .Hour
+        case 2:
+            return .Two
+        default:
+            assert(false, "Invalid TimeReadyForBed \(index)")
+        }
+    }
+}
+
+struct WakeUp{
     let wakeUpTime: NSDate
     let wakeUpText = "It's time to wake up"
     let goToBedText = "Get ready for bed so you'll get enough sleep for tomorrow"
+    var needHoursOfSleep: HoursOfSleep
+    var timeReadyForBed: TimeReadyForBed
+    var isOn: Bool
+
+    static let wakeUpTimeKey = "wakeUpTimeKey"
+    static let needHoursOfSleepKey = "needHoursOfSleepKey"
+    static let timeReadyForBedKey = "timeReadyForBedKey"
+    static let isOnKey = "isOnKey"
+    
+    init(_ time: NSDate, sleep: HoursOfSleep?, prepare: TimeReadyForBed?, isOn: Bool = true) {
+        wakeUpTime = WakeUp.getWakeUpTimeInFuture(time)
+        needHoursOfSleep = (sleep != nil ? sleep! : .Eight)
+        timeReadyForBed = (prepare != nil ? prepare! : .Hour)
+        self.isOn = isOn
+    }
+    
+    init?(dictionary: NSDictionary) {
+        let time = dictionary.objectForKey(WakeUp.wakeUpTimeKey) as! NSDate
+        let sleep = HoursOfSleep(rawValue: dictionary.objectForKey(WakeUp.needHoursOfSleepKey) as! Int)
+        let prepare = TimeReadyForBed(rawValue: dictionary.objectForKey(WakeUp.timeReadyForBedKey) as! Int)
+        let on = dictionary.objectForKey(WakeUp.isOnKey) as! Bool
+        self.init(time, sleep: sleep, prepare: prepare, isOn: on)
+    }
+    
+    func toDictionary() -> NSDictionary {
+        return NSDictionary(objects: [wakeUpTime, needHoursOfSleep.rawValue, timeReadyForBed.rawValue, isOn], forKeys: [WakeUp.wakeUpTimeKey, WakeUp.needHoursOfSleepKey, WakeUp.timeReadyForBedKey, WakeUp.isOnKey])
+    }
     
     func goToBedTime() -> NSDate {
-        return wakeUpTime.dateByAddingTimeInterval(-8 * 60 * 60)
+        return wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval())
     }
     
     func goToBedInString() -> String {
@@ -36,12 +140,12 @@ struct WakeUp {
     }
     
     func getWakeUpNotification() -> UILocalNotification {
-        let time = WakeUp.getWakeUpTimeInFuture(wakeUpTime)
-        return WakeUp.notificationForWakeUp(time, message: wakeUpText)
+        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText)
     }
 
     func getGoToBedNotification() -> UILocalNotification {
-        let time = WakeUp.getWakeUpTimeInFuture(wakeUpTime).dateByAddingTimeInterval(-15)
+        //TODO real interval
+        let time = wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval() - timeReadyForBed.asTimeInterval())
         return WakeUp.notificationForWakeUp(time, message: goToBedText)
     }
     
@@ -83,6 +187,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         timeToWakeUp.date = wakeUp.wakeUpTime
+        needSleep.selectedSegmentIndex = wakeUp.needHoursOfSleep.toUIIndex()
+        timeToPrepare.selectedSegmentIndex = wakeUp.timeReadyForBed.toUIIndex()
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,7 +197,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func setAlarm(sender: AnyObject) {
-        wakeUp = WakeUp(timeToWakeUp.date)
+        wakeUp = WakeUp(
+            timeToWakeUp.date,
+            sleep: HoursOfSleep.fromIndex(needSleep.selectedSegmentIndex),
+            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex))
         if ViewController.setWakeUpForTime(wakeUp) {
             delegate?.wakeUpWasSetTo(wakeUp)
             dismissViewControllerAnimated(true){}
@@ -114,6 +223,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var setWakeUp: UIButton!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
     
+    @IBOutlet weak var needSleep: UISegmentedControl!
+    @IBOutlet weak var timeToPrepare: UISegmentedControl!
     
     static func SetNotification(notification: UILocalNotification) {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)

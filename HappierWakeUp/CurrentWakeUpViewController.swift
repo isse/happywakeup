@@ -13,35 +13,39 @@ extension UIView {
         layer.frame.size = self.frame.size
         layer.frame.origin = CGPointMake(0.0,0.0)
         
-        let colorNight = UIColor(red: 0.0/255.0, green: 7.0/255.0, blue: 40.0/255.0, alpha: 1.0).CGColor
+        let colorNight = UIColor(red: 5.0/255.0, green: 20.0/255.0, blue: 40.0/255.0, alpha: 1.0).CGColor
         let colorDay = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).CGColor
-        let colorDawn = UIColor(red: 252.0/255.0, green: 248.0/255.0, blue: 106.0/255.0, alpha: 1.0).CGColor
+        let colorDawn = UIColor(red: 252.0/255.0, green: 244.0/255.0, blue: 200.0/255.0, alpha: 1.0).CGColor
         
-        layer.colors = [colorNight, colorNight, colorDay, colorDay]
-        layer.locations = [0.0, 0.3, 0.6, 1.0]
+        layer.colors = [colorNight, colorNight, colorDay, colorDay, colorDawn]
+        layer.locations = [0.0, 0.3, 0.6, 0.97, 1.0]
         self.layer.insertSublayer(layer, atIndex: 0)
     }
 }
 
 class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     
+    let storageKey = "currentWakeUp"
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
         baseView.layerGradient()
-        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
-        if notifications?.count > 0 {
-
-            //TODO something reliable
-            currentWakeUp = WakeUp((notifications![0]).fireDate!)
-            updateViewWithWakeUp(currentWakeUp)
-        } else {
-            //TODO persisting data
-            navigateToEditWakeUpViewWith(WakeUp(NSDate()))
-        }
         // Do any additional setup after loading the view, typically from a nib.
-
+        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
+        let storedWakeUp = NSUserDefaults.standardUserDefaults().objectForKey(storageKey)
+        if storedWakeUp != nil {
+            currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if currentWakeUp == nil {
+            navigateToEditWakeUpViewWith(WakeUp(NSDate(), sleep: nil, prepare: nil))
+        } else {
+            updateViewWithWakeUp(currentWakeUp!)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +55,7 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     
     @IBOutlet var baseView: UIView!
     @IBAction func editWakeUp(sender: AnyObject) {
-        navigateToEditWakeUpViewWith(currentWakeUp)
+        navigateToEditWakeUpViewWith(currentWakeUp!)
     }
     
     @IBOutlet weak var goToBedInLabel: UILabel!
@@ -60,10 +64,13 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     @IBOutlet weak var wakeUpOn: UISwitch!
 
     @IBAction func wakeUpOnOffSet(sender: AnyObject) {
-            setWakeUpOnOff(wakeUpOn.on)
+        assert(currentWakeUp != nil)
+        setWakeUpOnOff(wakeUpOn.on)
+        currentWakeUp?.isOn = wakeUpOn.on
+        storeWakeUp(currentWakeUp!)
     }
     
-    var currentWakeUp = WakeUp(NSDate())
+    var currentWakeUp: WakeUp?
 
     func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
@@ -74,22 +81,28 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     }
     
     func updateViewWithWakeUp(wakeUp: WakeUp) {
-        goToBedInLabel.text = "Go to bed in \(wakeUp.goToBedInString())"
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
+        goToBedInLabel.text = "Go to bed in \(wakeUp.goToBedInString()) at \(formatter.stringFromDate(wakeUp.goToBedTime()))"
         wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(wakeUp.wakeUpTime))"
+        wakeUpOn.on = wakeUp.isOn
     }
     
     func wakeUpWasSetTo(wakeUp: WakeUp) {
-        currentWakeUp = wakeUp
-        updateViewWithWakeUp(currentWakeUp)
+        storeWakeUp(wakeUp)
+        self.currentWakeUp = wakeUp
+        updateViewWithWakeUp(wakeUp)
     }
-    
+
+    func storeWakeUp(wakeUp: WakeUp) {
+        NSUserDefaults.standardUserDefaults().setObject(wakeUp.toDictionary(), forKey: storageKey)
+    }
+
     func setWakeUpOnOff(on: Bool) {
         goToBedInLabel.enabled = on
         wakeUpAtLabel.enabled = on
         if on {
-            ViewController.setWakeUpForTime(currentWakeUp)
+            ViewController.setWakeUpForTime(currentWakeUp!)
         } else {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
         }
