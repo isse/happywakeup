@@ -207,6 +207,7 @@ class ViewController: UIViewController {
         }
         // TODO or else?
     }
+
     static func setWakeUpForTime(wakeUp: WakeUp) -> Bool {
         ViewController.getPermissionForNotification()
         if ViewController.havePermissionForNotification() {

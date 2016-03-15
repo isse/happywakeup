@@ -13,12 +13,12 @@ extension UIView {
         layer.frame.size = self.frame.size
         layer.frame.origin = CGPointMake(0.0,0.0)
         
-        let colorNight = UIColor(red: 5.0/255.0, green: 20.0/255.0, blue: 40.0/255.0, alpha: 1.0).CGColor
+        let colorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 1.0).CGColor
         let colorDay = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).CGColor
-        let colorDawn = UIColor(red: 252.0/255.0, green: 244.0/255.0, blue: 200.0/255.0, alpha: 1.0).CGColor
+        let colorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 1.0).CGColor
         
-        layer.colors = [colorNight, colorNight, colorDay, colorDay, colorDawn]
-        layer.locations = [0.0, 0.3, 0.6, 0.97, 1.0]
+        layer.colors = [colorNight, colorDawn]
+        layer.locations = [0.0, 1.0]
         self.layer.insertSublayer(layer, atIndex: 0)
     }
 }
