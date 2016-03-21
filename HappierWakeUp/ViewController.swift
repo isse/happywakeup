@@ -97,17 +97,19 @@ struct WakeUp{
     var needHoursOfSleep: HoursOfSleep
     var timeReadyForBed: TimeReadyForBed
     var isOn: Bool
+    var repeatOnlyWeekdays: Bool
 
     static let wakeUpTimeKey = "wakeUpTimeKey"
     static let needHoursOfSleepKey = "needHoursOfSleepKey"
     static let timeReadyForBedKey = "timeReadyForBedKey"
     static let isOnKey = "isOnKey"
     
-    init(_ time: NSDate, sleep: HoursOfSleep?, prepare: TimeReadyForBed?, isOn: Bool = true) {
-        wakeUpTime = WakeUp.getWakeUpTimeInFuture(time)
+    init(_ time: NSDate, sleep: HoursOfSleep?, prepare: TimeReadyForBed?, isOn: Bool = true, repeatOnlyWeekdays: Bool = true) {
+        wakeUpTime = WakeUp.getTimeInFuture(time)
         needHoursOfSleep = (sleep != nil ? sleep! : .Eight)
         timeReadyForBed = (prepare != nil ? prepare! : .Hour)
         self.isOn = isOn
+        self.repeatOnlyWeekdays = repeatOnlyWeekdays;
     }
     
     init?(dictionary: NSDictionary) {
@@ -136,29 +138,54 @@ struct WakeUp{
         let minutes = (interval / 60) % 60
         let hours = (interval / 3600)
         
-        return String(format: "%0.2d h %0.2d min",hours,minutes)
+        return hours > 0 ?
+            String(format: "%0.2d h %0.2d min", hours, minutes) : String(format: "%0.2d min", minutes)
     }
     
-    func getWakeUpNotification() -> UILocalNotification {
-        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText)
+    func getWakeUpNotification() -> [UILocalNotification] {
+        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText, repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
 
-    func getGoToBedNotification() -> UILocalNotification {
-        //TODO real interval
+    func getGoToBedNotification() -> [UILocalNotification] {
         let time = wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval() - timeReadyForBed.asTimeInterval())
-        return WakeUp.notificationForWakeUp(time, message: goToBedText)
+        return WakeUp.notificationForWakeUp(time, message: goToBedText, repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
     
-    static func notificationForWakeUp(time: NSDate, message: String) -> UILocalNotification {
+    static func notificationForWakeUp(time: NSDate, message: String, repeatOnlyWeekdays: Bool = true) -> [UILocalNotification] {
+        if repeatOnlyWeekdays {
+            let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
+            let flags : NSCalendarUnit = [.Hour, .Minute, .Weekday, .Day, .Month]
+            let components = calendar.components(flags, fromDate: time)
+            let days = 2...6
+            let notifications: [UILocalNotification] = days.map {
+                (let day) -> UILocalNotification in
+                let diff = day - components.weekday;
+                var multiplier = 0
+                if diff != 0 {
+                    multiplier = diff > 0 ? diff : (diff == 0 ? diff : diff + 7 )
+                }
+                let weekdayTime = time.dateByAddingTimeInterval(Double(multiplier * 24 * 60 * 60))
+                return notificationForOneDay(weekdayTime, message: message, interval: NSCalendarUnit.WeekOfYear)
+            }
+            return notifications
+            
+        } else {
+            return [notificationForOneDay(time, message: message, interval: NSCalendarUnit.Day)]
+        }
+    }
+    
+    
+    static func notificationForOneDay(time: NSDate, message: String, interval: NSCalendarUnit) -> UILocalNotification {
         let notification = UILocalNotification()
         notification.fireDate = time
         notification.alertBody = message
         notification.alertAction = "Happy wake up"
         notification.soundName = UILocalNotificationDefaultSoundName
+        notification.repeatInterval = interval
         return notification
     }
 
-    static func getWakeUpTimeInFuture(time: NSDate) -> NSDate {
+    static func getTimeInFuture(time: NSDate) -> NSDate {
         // TODO maybe not elegant
         let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
         let now = NSDate()
@@ -200,7 +227,9 @@ class ViewController: UIViewController {
         wakeUp = WakeUp(
             timeToWakeUp.date,
             sleep: HoursOfSleep.fromIndex(needSleep.selectedSegmentIndex),
-            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex))
+            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex),
+            repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
+        )
         if ViewController.setWakeUpForTime(wakeUp) {
             delegate?.wakeUpWasSetTo(wakeUp)
             dismissViewControllerAnimated(true){}
@@ -212,8 +241,14 @@ class ViewController: UIViewController {
         ViewController.getPermissionForNotification()
         if ViewController.havePermissionForNotification() {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
-            ViewController.SetNotification(wakeUp.getGoToBedNotification())
-            ViewController.SetNotification(wakeUp.getWakeUpNotification())
+            let goToBeds = wakeUp.getGoToBedNotification()
+            let wakeUps = wakeUp.getWakeUpNotification()
+            for notification in goToBeds {
+                ViewController.SetNotification(notification)
+            }
+            for notification in wakeUps {
+                ViewController.SetNotification(notification)
+            }
             return true
         }
         return false;
@@ -223,6 +258,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var setWakeUp: UIButton!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
+    @IBOutlet weak var repeatInterval: UISegmentedControl!
     
     @IBOutlet weak var needSleep: UISegmentedControl!
     @IBOutlet weak var timeToPrepare: UISegmentedControl!

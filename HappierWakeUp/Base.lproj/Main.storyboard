@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
-                                <rect key="frame" x="20" y="140" width="560" height="369"/>
+                                <rect key="frame" x="20" y="140" width="560" height="417"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I want to wake up at" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3w-RE-rk0">
                                         <rect key="frame" x="204" y="0.0" width="152" height="21"/>
@@ -41,14 +41,27 @@
                                             <action selector="setAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sxi-B8-bMk"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTy-Cs-eIS">
+                                        <rect key="frame" x="253" y="272" width="54" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-kC-wOX">
+                                        <rect key="frame" x="175" y="292" width="211" height="29"/>
+                                        <segments>
+                                            <segment title="Weekdays only"/>
+                                            <segment title="Every day"/>
+                                        </segments>
+                                    </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need to sleep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-P0-WJP">
-                                        <rect key="frame" x="224" y="272" width="112" height="21"/>
+                                        <rect key="frame" x="224" y="320" width="112" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-HK-nAC">
-                                        <rect key="frame" x="188" y="292" width="184" height="29"/>
+                                        <rect key="frame" x="188" y="341" width="184" height="29"/>
                                         <segments>
                                             <segment title="6h"/>
                                             <segment title="7h"/>
@@ -58,13 +71,13 @@
                                         </segments>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And to get ready for bed I need" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-NX-eSS">
-                                        <rect key="frame" x="161" y="320" width="238" height="21"/>
+                                        <rect key="frame" x="161" y="369" width="238" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-Iu-COW">
-                                        <rect key="frame" x="200" y="341" width="161" height="29"/>
+                                        <rect key="frame" x="200" y="389" width="161" height="29"/>
                                         <segments>
                                             <segment title="30min"/>
                                             <segment title="1h"/>
@@ -84,6 +97,7 @@
                     <navigationItem key="navigationItem" id="VGs-Ml-1kc"/>
                     <connections>
                         <outlet property="needSleep" destination="hQ7-HK-nAC" id="h54-rj-YWT"/>
+                        <outlet property="repeatInterval" destination="FBK-kC-wOX" id="mEn-Po-1Ri"/>
                         <outlet property="setWakeUp" destination="k5R-ix-Ouo" id="wf4-RA-U13"/>
                         <outlet property="timeToPrepare" destination="e0G-Iu-COW" id="qet-S7-LBk"/>
                         <outlet property="timeToWakeUp" destination="PFR-sg-sxb" id="EGD-Md-T3t"/>
