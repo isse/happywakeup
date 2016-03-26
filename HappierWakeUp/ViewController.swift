@@ -138,8 +138,14 @@ struct WakeUp{
         let minutes = (interval / 60) % 60
         let hours = (interval / 3600)
         
-        return hours > 0 ?
-            String(format: "%0.2d h %0.2d min", hours, minutes) : String(format: "%0.2d min", minutes)
+        if hours > 0 {
+            return String(format: "in %0.2d h %0.2d min", hours, minutes)
+        } else if minutes > 0 {
+            return String(format: "in %0.2d min", minutes)
+        } else {
+            return "now"
+        }
+        
     }
     
     func getWakeUpNotification() -> [UILocalNotification] {

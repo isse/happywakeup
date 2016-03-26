@@ -100,7 +100,7 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     func updateViewWithWakeUp(wakeUp: WakeUp) {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
-        goToBedInLabel.text = "Go to bed in \(wakeUp.goToBedInString()) at \(formatter.stringFromDate(wakeUp.goToBedTime()))"
+        goToBedInLabel.text = "Go to bed \(wakeUp.goToBedInString())"
         wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(wakeUp.wakeUpTime))"
         wakeUpOn.on = wakeUp.isOn
     }
