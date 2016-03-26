@@ -8,18 +8,27 @@
 import UIKit
 
 extension UIView {
-    func layerGradient() {
+    func layerGradient(landscape: Bool, size: CGSize) {
         let layer : CAGradientLayer = CAGradientLayer()
-        layer.frame.size = self.frame.size
+        layer.frame = self.bounds
+        layer.frame.size = size
         layer.frame.origin = CGPointMake(0.0,0.0)
+        if(landscape) {
+            layer.startPoint = CGPointMake(0.0, 0.5)
+            layer.endPoint = CGPointMake(1.0, 0.5)
+        } else {
+            layer.startPoint = CGPointMake(0.5, 0.0)
+            layer.endPoint = CGPointMake(0.5, 1.0)
+        }
         
         let colorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 1.0).CGColor
-        let colorDay = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).CGColor
         let colorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 1.0).CGColor
         
         layer.colors = [colorNight, colorDawn]
         layer.locations = [0.0, 1.0]
+        let subs = self.subviews
         self.layer.insertSublayer(layer, atIndex: 0)
+        let substhen = self.subviews
     }
 }
 
@@ -29,10 +38,9 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        baseView.layerGradient()
+ 
+        self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
-        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
         let storedWakeUp = NSUserDefaults.standardUserDefaults().objectForKey(storageKey)
         if storedWakeUp != nil {
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
@@ -47,6 +55,13 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
             updateViewWithWakeUp(currentWakeUp!)
         }
     }
+
+    
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+          self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: size)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
