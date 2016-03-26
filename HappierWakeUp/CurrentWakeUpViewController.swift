@@ -56,7 +56,9 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         }
     }
 
-    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
           self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: size)
