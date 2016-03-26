@@ -45,6 +45,8 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         if storedWakeUp != nil {
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
         }
+        let timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "updateIfWakeUpSet", userInfo: nil, repeats: true)
+   
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -95,6 +97,12 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         viewController.delegate = self
         self.presentViewController(viewController, animated: true){}
     
+    }
+    
+    func updateIfWakeUpSet() {
+        if self.currentWakeUp != nil {
+            updateViewWithWakeUp(self.currentWakeUp!)
+        }
     }
     
     func updateViewWithWakeUp(wakeUp: WakeUp) {
