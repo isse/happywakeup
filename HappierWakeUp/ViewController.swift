@@ -230,19 +230,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func setAlarm(sender: AnyObject) {
-        wakeUp = WakeUp(
-            timeToWakeUp.date,
-            sleep: HoursOfSleep.fromIndex(needSleep.selectedSegmentIndex),
-            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex),
-            repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
-        )
-        if ViewController.setWakeUpForTime(wakeUp) {
-            delegate?.wakeUpWasSetTo(wakeUp)
-            dismissViewControllerAnimated(true){}
-        }
-        // TODO or else?
-    }
 
     static func setWakeUpForTime(wakeUp: WakeUp) -> Bool {
         ViewController.getPermissionForNotification()
@@ -264,6 +251,20 @@ class ViewController: UIViewController {
     var delegate: getNotifiedOfWakeUp?
     
     @IBOutlet weak var setWakeUp: UIButton!
+    @IBAction func doneSettingWakeUp(sender: AnyObject) {
+        wakeUp = WakeUp(
+            timeToWakeUp.date,
+            sleep: HoursOfSleep.fromIndex(needSleep.selectedSegmentIndex),
+            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex),
+            repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
+        )
+        if ViewController.setWakeUpForTime(wakeUp) {
+            delegate?.wakeUpWasSetTo(wakeUp)
+            dismissViewControllerAnimated(true){}
+        }
+        // TODO or else?
+    }
+    
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
     @IBOutlet weak var repeatInterval: UISegmentedControl!
     

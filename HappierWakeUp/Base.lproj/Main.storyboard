@@ -18,94 +18,150 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
-                                <rect key="frame" x="20" y="140" width="560" height="417"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I want to wake up at" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3w-RE-rk0">
-                                        <rect key="frame" x="204" y="0.0" width="152" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-sg-sxb">
-                                        <rect key="frame" x="120" y="21" width="320" height="216"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="478968872.388708">
-                                            <!--2016-03-06 14:54:32 +0000-->
-                                        </date>
-                                    </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5R-ix-Ouo">
-                                        <rect key="frame" x="265" y="237" width="30" height="35"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="Set"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n68-Fm-HYY">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.95548878205128207" green="0.91000208573248909" blue="0.68359041210018134" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="AWk-gp-0PI"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Done" id="VbT-HH-gbt">
                                         <connections>
-                                            <action selector="setAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sxi-B8-bMk"/>
+                                            <action selector="doneSettingWakeUp:" destination="BYZ-38-t0r" id="vZN-xt-LmZ"/>
                                         </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTy-Cs-eIS">
-                                        <rect key="frame" x="253" y="272" width="54" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-kC-wOX">
-                                        <rect key="frame" x="175" y="292" width="211" height="29"/>
-                                        <segments>
-                                            <segment title="Weekdays only"/>
-                                            <segment title="Every day"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I need to sleep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-P0-WJP">
-                                        <rect key="frame" x="224" y="320" width="112" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-HK-nAC">
-                                        <rect key="frame" x="188" y="341" width="184" height="29"/>
-                                        <segments>
-                                            <segment title="6h"/>
-                                            <segment title="7h"/>
-                                            <segment title="8h"/>
-                                            <segment title="9h"/>
-                                            <segment title="10h"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="And to get ready for bed I need" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-NX-eSS">
-                                        <rect key="frame" x="161" y="369" width="238" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-Iu-COW">
-                                        <rect key="frame" x="200" y="389" width="161" height="29"/>
-                                        <segments>
-                                            <segment title="30min"/>
-                                            <segment title="1h"/>
-                                            <segment title="2h"/>
-                                        </segments>
-                                    </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25C-CE-l5y">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="587"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
+                                        <rect key="frame" x="20" y="0.0" width="600" height="497"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I want to wake up at" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3w-RE-rk0">
+                                                <rect key="frame" x="185" y="0.0" width="230" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="3IW-eR-RNb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-sg-sxb">
+                                                <rect key="frame" x="140" y="37" width="320" height="216"/>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="478968872.388708">
+                                                    <!--2016-03-06 14:54:32 +0000-->
+                                                </date>
+                                            </datePicker>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTy-Cs-eIS">
+                                                <rect key="frame" x="278" y="270" width="46" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="9GM-lg-fCx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-kC-wOX">
+                                                <rect key="frame" x="195" y="307" width="211" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="ozU-eE-C5f"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Weekdays only"/>
+                                                    <segment title="Every day"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </segmentedControl>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need to sleep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-P0-WJP">
+                                                <rect key="frame" x="253" y="351" width="95" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="pEq-pS-PL5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-HK-nAC">
+                                                <rect key="frame" x="208" y="388" width="184" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="fPa-il-wfu"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="6h"/>
+                                                    <segment title="7h"/>
+                                                    <segment title="8h"/>
+                                                    <segment title="9h"/>
+                                                    <segment title="10h"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </segmentedControl>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="And to get ready for bed I need" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-NX-eSS">
+                                                <rect key="frame" x="200" y="432" width="202" height="21"/>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="Gep-UW-gQF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-Iu-COW">
+                                                <rect key="frame" x="220" y="469" width="161" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="V0J-Jd-t4p"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="30min"/>
+                                                    <segment title="1h"/>
+                                                    <segment title="2h"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="497" id="0Mu-jg-Ke7"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" red="1" green="0.95505234397549343" blue="0.83086387776386039" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="kb5-Zs-ham" firstAttribute="width" secondItem="25C-CE-l5y" secondAttribute="width" id="KPr-09-WQt"/>
+                                    <constraint firstItem="kb5-Zs-ham" firstAttribute="centerX" secondItem="25C-CE-l5y" secondAttribute="centerX" id="NlA-93-OsD"/>
+                                    <constraint firstItem="kb5-Zs-ham" firstAttribute="top" secondItem="25C-CE-l5y" secondAttribute="topMargin" constant="48" id="NnK-nG-ac9"/>
+                                    <constraint firstAttribute="bottom" secondItem="kb5-Zs-ham" secondAttribute="bottom" id="bdl-9a-XiQ"/>
+                                    <constraint firstItem="kb5-Zs-ham" firstAttribute="leading" secondItem="25C-CE-l5y" secondAttribute="leading" id="d7m-TZ-a9y"/>
+                                    <constraint firstAttribute="trailing" secondItem="kb5-Zs-ham" secondAttribute="trailing" id="ySz-Rd-FJz"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kb5-Zs-ham" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2Rd-yr-3jB"/>
-                            <constraint firstItem="kb5-Zs-ham" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="SGE-WP-RLt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kb5-Zs-ham" secondAttribute="trailing" id="hxO-Dc-s6k"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="n68-Fm-HYY" secondAttribute="bottom" id="1qZ-56-LaG"/>
+                            <constraint firstItem="25C-CE-l5y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4Qv-aD-0SD"/>
+                            <constraint firstItem="25C-CE-l5y" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="9Ke-Wt-tP0"/>
+                            <constraint firstItem="n68-Fm-HYY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CaZ-Ah-O6O"/>
+                            <constraint firstItem="25C-CE-l5y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EXq-0o-rj3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="25C-CE-l5y" secondAttribute="trailing" constant="-20" id="J7D-pK-nFT"/>
+                            <constraint firstAttribute="trailing" secondItem="n68-Fm-HYY" secondAttribute="trailing" id="RnD-xf-e42"/>
+                            <constraint firstItem="25C-CE-l5y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="dW2-Oz-wwV"/>
+                            <constraint firstAttribute="trailing" secondItem="25C-CE-l5y" secondAttribute="trailing" id="dzb-kl-UuT"/>
+                            <constraint firstItem="n68-Fm-HYY" firstAttribute="top" secondItem="25C-CE-l5y" secondAttribute="bottom" id="v1T-W7-8ju"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VGs-Ml-1kc"/>
                     <connections>
                         <outlet property="needSleep" destination="hQ7-HK-nAC" id="h54-rj-YWT"/>
                         <outlet property="repeatInterval" destination="FBK-kC-wOX" id="mEn-Po-1Ri"/>
-                        <outlet property="setWakeUp" destination="k5R-ix-Ouo" id="wf4-RA-U13"/>
                         <outlet property="timeToPrepare" destination="e0G-Iu-COW" id="qet-S7-LBk"/>
                         <outlet property="timeToWakeUp" destination="PFR-sg-sxb" id="EGD-Md-T3t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="372"/>
+            <point key="canvasLocation" x="1119" y="303"/>
         </scene>
         <!--Current Wake Up View Controller-->
         <scene sceneID="lyJ-s6-vZF">
