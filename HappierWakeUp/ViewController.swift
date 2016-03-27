@@ -149,20 +149,21 @@ struct WakeUp{
     }
     
     func getWakeUpNotification() -> [UILocalNotification] {
-        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText, repeatOnlyWeekdays: repeatOnlyWeekdays)
+        let days = 2...6
+        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText, days: days, repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
 
     func getGoToBedNotification() -> [UILocalNotification] {
         let time = wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval() - timeReadyForBed.asTimeInterval())
-        return WakeUp.notificationForWakeUp(time, message: goToBedText, repeatOnlyWeekdays: repeatOnlyWeekdays)
+        let days = 1...5
+        return WakeUp.notificationForWakeUp(time, message: goToBedText, days: days, repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
     
-    static func notificationForWakeUp(time: NSDate, message: String, repeatOnlyWeekdays: Bool = true) -> [UILocalNotification] {
+    static func notificationForWakeUp(time: NSDate, message: String, days: Range<Int>, repeatOnlyWeekdays: Bool = true) -> [UILocalNotification] {
         if repeatOnlyWeekdays {
             let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
             let flags : NSCalendarUnit = [.Hour, .Minute, .Weekday, .Day, .Month]
             let components = calendar.components(flags, fromDate: time)
-            let days = 2...6
             let notifications: [UILocalNotification] = days.map {
                 (let day) -> UILocalNotification in
                 let diff = day - components.weekday;
