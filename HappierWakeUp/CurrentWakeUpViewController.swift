@@ -98,7 +98,6 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         viewController.wakeUp = wakeUp
         viewController.delegate = self
         self.presentViewController(viewController, animated: true){}
-    
     }
     
     func setWakeUpWhenNavigatingBack(wakeUp: WakeUp) {

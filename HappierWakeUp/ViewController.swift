@@ -13,7 +13,7 @@ protocol GetNotifiedOfWakeUp {
     func setWakeUpWhenNavigatingBack(wakeUp: WakeUp)
 }
 
-class ViewController: UIViewController, NotificationSettingsRegistered {
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, NotificationSettingsRegistered {
     
     var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
@@ -91,6 +91,13 @@ class ViewController: UIViewController, NotificationSettingsRegistered {
     func notificationSettingsRegistered(granted: Bool) {
         if granted {
             setWakeUpWithViewDataAndDismis()
+        } else {
+            let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnableNotificationsViewControllerId") as! EnableNotificationsViewController
+            viewController.modalPresentationStyle = .Popover
+            self.presentViewController(viewController, animated: true){}
+            let popoverMenuViewController = viewController.popoverPresentationController
+            popoverMenuViewController?.permittedArrowDirections = .Any
+            popoverMenuViewController?.delegate = self
         }
     }
 }

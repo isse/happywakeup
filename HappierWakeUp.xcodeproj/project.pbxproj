@@ -14,6 +14,7 @@
 		29850E7F1C8C7B920037A83D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29850E7D1C8C7B920037A83D /* LaunchScreen.storyboard */; };
 		29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */; };
 		29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D291CA92C0F00DFC05A /* WakeUp.swift */; };
+		29B05D2C1CA9A77B00DFC05A /* EnableNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D2B1CA9A77B00DFC05A /* EnableNotificationsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		29850E801C8C7B920037A83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWakeUpViewController.swift; sourceTree = "<group>"; };
 		29B05D291CA92C0F00DFC05A /* WakeUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
+		29B05D2B1CA9A77B00DFC05A /* EnableNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnableNotificationsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				29850E801C8C7B920037A83D /* Info.plist */,
 				29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */,
 				29B05D291CA92C0F00DFC05A /* WakeUp.swift */,
+				29B05D2B1CA9A77B00DFC05A /* EnableNotificationsViewController.swift */,
 			);
 			path = HappierWakeUp;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */,
 				29850E771C8C7B920037A83D /* ViewController.swift in Sources */,
 				29850E751C8C7B920037A83D /* AppDelegate.swift in Sources */,
+				29B05D2C1CA9A77B00DFC05A /* EnableNotificationsViewController.swift in Sources */,
 				29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
