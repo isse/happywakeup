@@ -9,13 +9,13 @@
 import UIKit
 
 
-protocol getNotifiedOfWakeUp {
+protocol GetNotifiedOfWakeUp {
     func setWakeUpWhenNavigatingBack(wakeUp: WakeUp)
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, NotificationSettingsRegistered {
     
-    var delegate: getNotifiedOfWakeUp?
+    var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
 
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
@@ -25,19 +25,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var timeToPrepare: UISegmentedControl!
 
     @IBAction func doneSettingWakeUp(sender: AnyObject) {
-        wakeUp = WakeUp(
-            timeToWakeUp.date,
-            sleep: HoursOfSleep.fromIndex(needSleep.selectedSegmentIndex),
-            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex),
-            repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
-        )
-        if ViewController.setWakeUpForTime(wakeUp) {
-            delegate?.setWakeUpWhenNavigatingBack(wakeUp)
-            dismissViewControllerAnimated(true){}
+        if ViewController.havePermissionForNotification() {
+            setWakeUpWithViewDataAndDismis()
+        } else {
+            ViewController.getPermissionForNotification()
         }
         // TODO or else?
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,10 +46,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func setWakeUpWithViewDataAndDismis() {
+        wakeUp = WakeUp(
+            timeToWakeUp.date,
+            sleep: HoursOfSleep.fromIndex(needSleep.selectedSegmentIndex),
+            prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex),
+            repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
+        )
+        ViewController.setWakeUpForTime(wakeUp)
+        delegate?.setWakeUpWhenNavigatingBack(wakeUp)
+        dismissViewControllerAnimated(true){}
+    }
 
-    static func setWakeUpForTime(wakeUp: WakeUp) -> Bool {
-        ViewController.getPermissionForNotification()
-        if ViewController.havePermissionForNotification() {
+    static func setWakeUpForTime(wakeUp: WakeUp){
             UIApplication.sharedApplication().cancelAllLocalNotifications()
             let goToBeds = wakeUp.getGoToBedNotification()
             let wakeUps = wakeUp.getWakeUpNotification()
@@ -64,9 +68,6 @@ class ViewController: UIViewController {
             for notification in wakeUps {
                 ViewController.SetNotification(notification)
             }
-            return true
-        }
-        return false;
     }
     
     
@@ -86,5 +87,11 @@ class ViewController: UIViewController {
         return notificationSettings?.types.contains([.Alert, .Sound, .Badge]) === true
     }
     
+    //protocol notificationSettingsRegistered
+    func notificationSettingsRegistered(granted: Bool) {
+        if granted {
+            setWakeUpWithViewDataAndDismis()
+        }
+    }
 }
 

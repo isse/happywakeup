@@ -33,7 +33,7 @@ extension UIView {
     }
 }
 
-class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
+class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
     
     let storageKey = "currentWakeUp"
     var currentWakeUp: WakeUp?
@@ -134,5 +134,10 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
         }
     }
+    
+    //protocol NotificationSettingsRegistered
+    func notificationSettingsRegistered(granted: Bool) {
+    }
+
 }
 

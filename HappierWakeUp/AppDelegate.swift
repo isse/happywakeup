@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol NotificationSettingsRegistered {
+    func notificationSettingsRegistered(granted: Bool)
+}
+
 @UIApplicationMain
+
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -49,6 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        let granted = notificationSettings.types.contains([.Alert, .Sound, .Badge]) == true
+        let visibleViewController = self.window?.rootViewController?.presentedViewController
+        let viewController: NotificationSettingsRegistered  = visibleViewController as! NotificationSettingsRegistered
+        viewController.notificationSettingsRegistered(granted)
+    }
+    
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         if let userInfo = notification.userInfo {
             print("didReceiveLocalNotification")
