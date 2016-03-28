@@ -24,6 +24,7 @@ extension UIView {
         let colorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 1.0).CGColor
         let colorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 1.0).CGColor
         
+        //TODO orientation change, subviews won't behave :(
         layer.colors = [colorNight, colorDawn]
         layer.locations = [0.0, 1.0]
         let subs = self.subviews
@@ -35,12 +36,33 @@ extension UIView {
 class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     
     let storageKey = "currentWakeUp"
+    var currentWakeUp: WakeUp?
+    var updateView: NSTimer?
+    
+    @IBOutlet var baseView: UIView!
+    @IBAction func editWakeUp(sender: AnyObject) {
+        navigateToEditWakeUpViewWith(currentWakeUp!)
+    }
+    
+    @IBOutlet weak var goToBedInLabel: UILabel!
+    
+    @IBOutlet weak var wakeUpAtLabel: UILabel!
+    @IBOutlet weak var wakeUpOn: UISwitch!
+    
+    @IBAction func wakeUpOnOffSet(sender: AnyObject) {
+        assert(currentWakeUp != nil)
+        setWakeUpOnOff(wakeUpOn.on)
+        currentWakeUp?.isOn = wakeUpOn.on
+        storeWakeUp(currentWakeUp!)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
  
         self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
+        
         let storedWakeUp = NSUserDefaults.standardUserDefaults().objectForKey(storageKey)
         if storedWakeUp != nil {
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
@@ -57,40 +79,19 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         //TODO these get garbage collected?
         updateView = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(CurrentWakeUpViewController.updateIfWakeUpSet), userInfo: nil, repeats: true)
     }
-
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-    
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-          self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: size)
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet var baseView: UIView!
-    @IBAction func editWakeUp(sender: AnyObject) {
-        navigateToEditWakeUpViewWith(currentWakeUp!)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
     
-    @IBOutlet weak var goToBedInLabel: UILabel!
-    
-    @IBOutlet weak var wakeUpAtLabel: UILabel!
-    @IBOutlet weak var wakeUpOn: UISwitch!
-
-    @IBAction func wakeUpOnOffSet(sender: AnyObject) {
-        assert(currentWakeUp != nil)
-        setWakeUpOnOff(wakeUpOn.on)
-        currentWakeUp?.isOn = wakeUpOn.on
-        storeWakeUp(currentWakeUp!)
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: size)
     }
-    
-    var currentWakeUp: WakeUp?
-    var updateView: NSTimer?
 
     func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
@@ -98,6 +99,12 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         viewController.delegate = self
         self.presentViewController(viewController, animated: true){}
     
+    }
+    
+    func setWakeUpWhenNavigatingBack(wakeUp: WakeUp) {
+        storeWakeUp(wakeUp)
+        self.currentWakeUp = wakeUp
+        updateViewWithWakeUp(wakeUp)
     }
     
     func updateIfWakeUpSet() {
@@ -114,12 +121,6 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         wakeUpOn.on = wakeUp.isOn
     }
     
-    func wakeUpWasSetTo(wakeUp: WakeUp) {
-        storeWakeUp(wakeUp)
-        self.currentWakeUp = wakeUp
-        updateViewWithWakeUp(wakeUp)
-    }
-
     func storeWakeUp(wakeUp: WakeUp) {
         NSUserDefaults.standardUserDefaults().setObject(wakeUp.toDictionary(), forKey: storageKey)
     }

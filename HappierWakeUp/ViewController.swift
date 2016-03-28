@@ -212,7 +212,7 @@ struct WakeUp{
 }
 
 protocol getNotifiedOfWakeUp {
-    func wakeUpWasSetTo(wakeUp: WakeUp)
+    func setWakeUpWhenNavigatingBack(wakeUp: WakeUp)
 }
 
 class ViewController: UIViewController {
@@ -259,7 +259,7 @@ class ViewController: UIViewController {
             repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
         )
         if ViewController.setWakeUpForTime(wakeUp) {
-            delegate?.wakeUpWasSetTo(wakeUp)
+            delegate?.setWakeUpWhenNavigatingBack(wakeUp)
             dismissViewControllerAnimated(true){}
         }
         // TODO or else?
