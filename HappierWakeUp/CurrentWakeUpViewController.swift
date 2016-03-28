@@ -45,8 +45,6 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         if storedWakeUp != nil {
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
         }
-        let timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "updateIfWakeUpSet", userInfo: nil, repeats: true)
-   
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -56,6 +54,8 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
         } else {
             updateViewWithWakeUp(currentWakeUp!)
         }
+        //TODO these get garbage collected?
+        updateView = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(CurrentWakeUpViewController.updateIfWakeUpSet), userInfo: nil, repeats: true)
     }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -90,6 +90,7 @@ class CurrentWakeUpViewController: UIViewController, getNotifiedOfWakeUp {
     }
     
     var currentWakeUp: WakeUp?
+    var updateView: NSTimer?
 
     func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
