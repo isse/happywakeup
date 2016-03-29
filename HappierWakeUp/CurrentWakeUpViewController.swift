@@ -27,9 +27,7 @@ extension UIView {
         //TODO orientation change, subviews won't behave :(
         layer.colors = [colorNight, colorDawn]
         layer.locations = [0.0, 1.0]
-        let subs = self.subviews
         self.layer.insertSublayer(layer, atIndex: 0)
-        let substhen = self.subviews
     }
 }
 
