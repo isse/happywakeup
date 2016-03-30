@@ -19,7 +19,6 @@ class EnableNotificationsViewController: UIViewController {
     
     @IBAction func cancelEnableNotifications(sender: AnyObject) {
         dismissViewControllerAnimated(true){}
-
     }
 
 }

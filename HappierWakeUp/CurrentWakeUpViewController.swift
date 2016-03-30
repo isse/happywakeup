@@ -8,18 +8,13 @@
 import UIKit
 
 extension UIView {
-    func layerGradient(landscape: Bool, size: CGSize) {
+    func layerGradient(size: CGSize) {
         let layer : CAGradientLayer = CAGradientLayer()
         layer.frame = self.bounds
         layer.frame.size = size
         layer.frame.origin = CGPointMake(0.0,0.0)
-        if(landscape) {
-            layer.startPoint = CGPointMake(0.0, 0.5)
-            layer.endPoint = CGPointMake(1.0, 0.5)
-        } else {
-            layer.startPoint = CGPointMake(0.5, 0.0)
-            layer.endPoint = CGPointMake(0.5, 1.0)
-        }
+        layer.startPoint = CGPointMake(0.5, 0.0)
+        layer.endPoint = CGPointMake(0.5, 1.0)
         
         let colorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 1.0).CGColor
         let colorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 1.0).CGColor
@@ -31,7 +26,7 @@ extension UIView {
     }
 }
 
-class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
+class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationControllerDelegate, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
     
     let storageKey = "currentWakeUp"
     var currentWakeUp: WakeUp?
@@ -58,7 +53,7 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
  
-        self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: baseView.frame.size)
+        self.view.layerGradient(baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
         
         let storedWakeUp = NSUserDefaults.standardUserDefaults().objectForKey(storageKey)
@@ -87,10 +82,6 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         return UIInterfaceOrientationMask.Portrait
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        self.view.layerGradient(UIDevice.currentDevice().orientation.isLandscape.boolValue, size: size)
-    }
-
     func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
         viewController.wakeUp = wakeUp
@@ -123,18 +114,28 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     }
 
     func setWakeUpOnOff(on: Bool) {
-        goToBedInLabel.enabled = on
-        wakeUpAtLabel.enabled = on
         if on {
-            ViewController.setWakeUpForTime(currentWakeUp!)
+            if ViewController.havePermissionForNotification() {
+                ViewController.setWakeUpForTime(currentWakeUp!)
+                goToBedInLabel.enabled = on
+                wakeUpAtLabel.enabled = on
+            } else {
+                wakeUpOn.on = false
+                let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnableNotificationsViewControllerId") as! EnableNotificationsViewController
+                viewController.modalPresentationStyle = .Popover
+                self.presentViewController(viewController, animated: true){}
+                let popoverMenuViewController = viewController.popoverPresentationController
+                popoverMenuViewController?.permittedArrowDirections = .Any
+                popoverMenuViewController?.delegate = self
+            }
         } else {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
+            goToBedInLabel.enabled = on
+            wakeUpAtLabel.enabled = on
         }
     }
     
     //protocol NotificationSettingsRegistered
-    func notificationSettingsRegistered(granted: Bool) {
-    }
-
+    func notificationSettingsRegistered(granted: Bool) {}
 }
 
