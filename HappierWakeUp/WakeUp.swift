@@ -125,7 +125,7 @@ struct WakeUp{
     }
     
     func goToBedTime() -> NSDate {
-        return wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval())
+        return WakeUp.getTimeInFuture(wakeUpTime).dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval())
     }
     
     func goToBedInString() -> String {
