@@ -187,7 +187,7 @@ struct WakeUp{
         notification.fireDate = time
         notification.alertBody = message
         notification.alertAction = "Happy wake up"
-        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.soundName = "246390__foolboymedia__chiming-out.wav"
         notification.repeatInterval = interval
         return notification
     }
