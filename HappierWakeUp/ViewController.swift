@@ -37,6 +37,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         timeToWakeUp.date = wakeUp.wakeUpTime
+        repeatInterval.selectedSegmentIndex = wakeUp.repeatOnlyWeekdays ? 0 : 1
         needSleep.selectedSegmentIndex = wakeUp.needHoursOfSleep.toUIIndex()
         timeToPrepare.selectedSegmentIndex = wakeUp.timeReadyForBed.toUIIndex()
     }
