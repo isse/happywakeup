@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    func layerGradient(size: CGSize) {
+    func layerGradient(size: CGSize, dark: Bool = true) {
         let layer : CAGradientLayer = CAGradientLayer()
         layer.frame = self.bounds
         layer.frame.size = size
@@ -18,9 +18,14 @@ extension UIView {
         
         let colorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 1.0).CGColor
         let colorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 1.0).CGColor
-        
-        //TODO orientation change, subviews won't behave :(
-        layer.colors = [colorNight, colorDawn]
+        let lightColorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 0.6).CGColor
+        let lightColorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 0.6).CGColor
+
+        if dark {
+            layer.colors = [colorNight, colorDawn]
+        } else {
+            layer.colors = [lightColorDawn, lightColorNight]
+        }
         layer.locations = [0.0, 1.0]
         self.layer.insertSublayer(layer, atIndex: 0)
     }

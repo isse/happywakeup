@@ -21,7 +21,7 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n68-Fm-HYY">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.95548878205128207" green="0.91000208573248909" blue="0.68359041210018134" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30633526058571398" green="0.49660632986739861" blue="0.56646634615384617" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="AWk-gp-0PI"/>
                                 </constraints>
@@ -37,8 +37,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25C-CE-l5y">
                                 <rect key="frame" x="20" y="0.0" width="560" height="556"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
-                                        <rect key="frame" x="0.0" y="56" width="560" height="607"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
+                                        <rect key="frame" x="0.0" y="56" width="560" height="623"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g1c-Be-3IZ" userLabel="Time Stack View">
                                                 <rect key="frame" x="120" y="0.0" width="320" height="257"/>
@@ -61,14 +61,14 @@
                                                     </datePicker>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-C9-8Aj">
-                                                <rect key="frame" x="253" y="287" width="55" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Optional" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-C9-8Aj">
+                                                <rect key="frame" x="235" y="291" width="91" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="i7F-fQ-4dw" userLabel="Repeat Stack View">
-                                                <rect key="frame" x="120" y="346" width="320" height="63"/>
+                                                <rect key="frame" x="120" y="354" width="320" height="63"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTy-Cs-eIS">
                                                         <rect key="frame" x="135" y="0.0" width="52" height="21"/>
@@ -96,7 +96,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LhS-d1-8B8" userLabel="Sleep Time Stack View">
-                                                <rect key="frame" x="120" y="439" width="320" height="69"/>
+                                                <rect key="frame" x="120" y="451" width="320" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I need to sleep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-P0-WJP">
                                                         <rect key="frame" x="107" y="0.0" width="107" height="21"/>
@@ -127,7 +127,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LNH-QX-92J" userLabel="Prepare Time Stack View">
-                                                <rect key="frame" x="120" y="538" width="320" height="69"/>
+                                                <rect key="frame" x="120" y="554" width="320" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="And to get ready for bed I need" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-NX-eSS">
                                                         <rect key="frame" x="47" y="0.0" width="226" height="21"/>
@@ -190,6 +190,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="VGs-Ml-1kc"/>
                     <connections>
+                        <outlet property="baseView" destination="8bC-Xf-vdC" id="lwR-qc-05J"/>
                         <outlet property="needSleep" destination="hQ7-HK-nAC" id="h54-rj-YWT"/>
                         <outlet property="repeatInterval" destination="FBK-kC-wOX" id="mEn-Po-1Ri"/>
                         <outlet property="timeToPrepare" destination="e0G-Iu-COW" id="qet-S7-LBk"/>
@@ -212,28 +213,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="8kQ-YL-f2R">
-                                <rect key="frame" x="-42" y="154" width="600" height="125"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="8kQ-YL-f2R">
+                                <rect key="frame" x="60" y="238" width="480" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without notifications this really doesn't work :( Please enable notifications in Settings so you can set wake up." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiJ-vM-30x">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
+                                        <rect key="frame" x="6" y="0.0" width="468" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="jla-KS-jHN">
-                                        <rect key="frame" x="194" y="95" width="213" height="30"/>
+                                        <rect key="frame" x="134" y="95" width="213" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWk-kL-9fM">
                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
-                                                <state key="normal" title="Cancel"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="cancelEnableNotifications:" destination="0Is-v5-VJ9" eventType="touchUpInside" id="SCH-Wi-LRG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AE-JI-ope">
                                                 <rect key="frame" x="116" y="0.0" width="97" height="30"/>
-                                                <state key="normal" title="Go to settings"/>
+                                                <state key="normal" title="Go to settings">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="goToSettings:" destination="0Is-v5-VJ9" eventType="touchUpInside" id="msK-QR-Xxe"/>
                                                 </connections>
@@ -246,8 +251,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8kQ-YL-f2R" firstAttribute="centerY" secondItem="7bv-Su-v6A" secondAttribute="centerY" id="9O7-YL-7Gu"/>
+                            <constraint firstItem="8kQ-YL-f2R" firstAttribute="width" secondItem="7bv-Su-v6A" secondAttribute="width" multiplier="0.8" id="UEn-6K-6Zf"/>
                             <constraint firstItem="8kQ-YL-f2R" firstAttribute="centerX" secondItem="7bv-Su-v6A" secondAttribute="centerX" id="Ure-97-d9t"/>
-                            <constraint firstItem="wiJ-vM-30x" firstAttribute="width" secondItem="7bv-Su-v6A" secondAttribute="width" id="nUi-dB-MSH"/>
                         </constraints>
                     </view>
                 </viewController>

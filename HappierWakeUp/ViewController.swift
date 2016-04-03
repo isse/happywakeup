@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
 
+    @IBOutlet var baseView: UIView!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
     @IBOutlet weak var repeatInterval: UISegmentedControl!
     
@@ -40,6 +41,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         repeatInterval.selectedSegmentIndex = wakeUp.repeatOnlyWeekdays ? 0 : 1
         needSleep.selectedSegmentIndex = wakeUp.needHoursOfSleep.toUIIndex()
         timeToPrepare.selectedSegmentIndex = wakeUp.timeReadyForBed.toUIIndex()
+        self.view.layerGradient(baseView.frame.size, dark: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +97,9 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         } else {
             let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnableNotificationsViewControllerId") as! EnableNotificationsViewController
             viewController.modalPresentationStyle = .Popover
+            viewController.preferredContentSize = CGSizeMake(200, 400)
+            viewController.popoverPresentationController?.sourceView = self.view
+            viewController.popoverPresentationController?.sourceRect = CGRectMake(100,100,0,0)
             self.presentViewController(viewController, animated: true){}
             let popoverMenuViewController = viewController.popoverPresentationController
             popoverMenuViewController?.permittedArrowDirections = .Any
