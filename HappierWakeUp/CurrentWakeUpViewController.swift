@@ -106,6 +106,8 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
         formatter.timeStyle = .ShortStyle
         goToBedInLabel.text = "Go to bed \(wakeUp.goToBedInString())"
         wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(wakeUp.wakeUpTime))"
+        goToBedInLabel.enabled = true
+        wakeUpAtLabel.enabled = true
         wakeUpOn.on = wakeUp.isOn
     }
     
