@@ -32,6 +32,7 @@ extension UIView {
 }
 
 class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationControllerDelegate, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
+    @IBOutlet weak var goodMorningLabel: UILabel!
     
     let storageKey = "currentWakeUp"
     var currentWakeUp: WakeUp?
@@ -58,6 +59,12 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
  
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "applicationDidBecomeActive:",
+            name: UIApplicationDidBecomeActiveNotification,
+            object: nil)
+
         self.view.layerGradient(baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -66,6 +73,20 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
         }
     }
+    
+    func applicationDidBecomeActive(notification: NSNotification) {
+        // do something
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if delegate.launchedFromNotification == WakeUp.wakeUpValue {
+            goodMorningLabel.hidden = false
+            UIView.animateWithDuration(15, animations: { [weak self] in
+                if let selfish = self {
+                    selfish.goodMorningLabel.alpha = 0.0
+                }
+            })
+        }
+    }
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

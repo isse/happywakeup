@@ -37,7 +37,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25C-CE-l5y">
                                 <rect key="frame" x="20" y="0.0" width="560" height="556"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
                                         <rect key="frame" x="0.0" y="56" width="560" height="623"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g1c-Be-3IZ" userLabel="Time Stack View">
@@ -311,11 +311,19 @@
                                             <constraint firstAttribute="height" constant="31" id="cZq-p4-ak2"/>
                                         </constraints>
                                     </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcK-Yl-aWN">
+                                        <rect key="frame" x="161.5" y="0.0" width="237.5" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="5wn-tI-kdS" secondAttribute="bottom" constant="45" id="AN9-nJ-xck"/>
                                     <constraint firstItem="riM-J4-ad1" firstAttribute="width" secondItem="lGQ-Or-zgz" secondAttribute="width" id="Ddi-H5-K6v"/>
                                     <constraint firstItem="riM-J4-ad1" firstAttribute="centerX" secondItem="lGQ-Or-zgz" secondAttribute="centerX" id="E0J-Rx-qCK"/>
+                                    <constraint firstItem="xcK-Yl-aWN" firstAttribute="top" secondItem="lGQ-Or-zgz" secondAttribute="top" id="E2j-5E-JPM"/>
+                                    <constraint firstItem="xcK-Yl-aWN" firstAttribute="centerX" secondItem="lGQ-Or-zgz" secondAttribute="centerX" id="Iuf-9h-Y6B"/>
                                     <constraint firstItem="5wn-tI-kdS" firstAttribute="width" secondItem="lGQ-Or-zgz" secondAttribute="width" multiplier="0.7" id="NRq-tH-7ga"/>
                                     <constraint firstItem="5wn-tI-kdS" firstAttribute="centerX" secondItem="lGQ-Or-zgz" secondAttribute="centerX" id="OnZ-Li-rjs"/>
                                     <constraint firstItem="riM-J4-ad1" firstAttribute="centerY" secondItem="lGQ-Or-zgz" secondAttribute="centerY" id="fRb-es-zU0"/>
@@ -369,6 +377,7 @@
                     <connections>
                         <outlet property="baseView" destination="x3A-Yl-onC" id="C43-Ms-cLX"/>
                         <outlet property="goToBedInLabel" destination="cQK-47-bpO" id="r64-S1-quu"/>
+                        <outlet property="goodMorningLabel" destination="xcK-Yl-aWN" id="dDk-Qs-DQm"/>
                         <outlet property="wakeUpAtLabel" destination="riM-J4-ad1" id="P7P-sB-3Bu"/>
                         <outlet property="wakeUpOn" destination="Dyh-XS-iQU" id="C2R-iv-1IL"/>
                     </connections>

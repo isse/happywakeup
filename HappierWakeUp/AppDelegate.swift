@@ -18,12 +18,13 @@ protocol NotificationSettingsRegistered {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var launchedFromNotification: String?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         if let options = launchOptions {
             if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-                print("Woke up by notification")
+                launchedFromNotification = getNotificationUserInfo(notification)
             }
         }
 
@@ -63,9 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        launchedFromNotification = getNotificationUserInfo(notification)
+    }
+    
+    func getNotificationUserInfo(notification: UILocalNotification) -> String? {
         if let userInfo = notification.userInfo {
-            print("didReceiveLocalNotification")
+            return userInfo[WakeUp.notificationUserInfoKey] as? String
         }
+        return nil
+
     }
 
 }

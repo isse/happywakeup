@@ -103,6 +103,9 @@ struct WakeUp{
     static let needHoursOfSleepKey = "needHoursOfSleepKey"
     static let timeReadyForBedKey = "timeReadyForBedKey"
     static let isOnKey = "isOnKey"
+    static let notificationUserInfoKey = "notificationUserInfoKey"
+    static let wakeUpValue = "WakeUpValue"
+    static let goToBedValue = "goToBedUserInfo"
     
     init(_ time: NSDate, sleep: HoursOfSleep?, prepare: TimeReadyForBed?, isOn: Bool = true, repeatOnlyWeekdays: Bool = true) {
         wakeUpTime = WakeUp.getTimeInFuture(time)
@@ -150,16 +153,16 @@ struct WakeUp{
     
     func getWakeUpNotification() -> [UILocalNotification] {
         let days = 2...6
-        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText, days: days, repeatOnlyWeekdays: repeatOnlyWeekdays)
+        return WakeUp.notificationForWakeUp(wakeUpTime, message: wakeUpText, days: days, userInfo: WakeUp.wakeUpValue, repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
     
     func getGoToBedNotification() -> [UILocalNotification] {
         let time = wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval() - timeReadyForBed.asTimeInterval())
         let days = 1...5
-        return WakeUp.notificationForWakeUp(time, message: goToBedText, days: days, repeatOnlyWeekdays: repeatOnlyWeekdays)
+        return WakeUp.notificationForWakeUp(time, message: goToBedText, days: days, userInfo: WakeUp.goToBedValue,repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
     
-    static func notificationForWakeUp(time: NSDate, message: String, days: Range<Int>, repeatOnlyWeekdays: Bool = true) -> [UILocalNotification] {
+    static func notificationForWakeUp(time: NSDate, message: String, days: Range<Int>, userInfo: String, repeatOnlyWeekdays: Bool = true) -> [UILocalNotification] {
         if repeatOnlyWeekdays {
             let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
             let flags : NSCalendarUnit = [.Hour, .Minute, .Weekday, .Day, .Month]
@@ -172,23 +175,27 @@ struct WakeUp{
                     multiplier = diff > 0 ? diff : (diff == 0 ? diff : diff + 7 )
                 }
                 let weekdayTime = time.dateByAddingTimeInterval(Double(multiplier * 24 * 60 * 60))
-                return notificationForOneDay(weekdayTime, message: message, interval: NSCalendarUnit.WeekOfYear)
+                return notificationForOneDay(weekdayTime, message: message, interval: NSCalendarUnit.WeekOfYear, userInfo: userInfo)
             }
             return notifications
             
         } else {
-            return [notificationForOneDay(time, message: message, interval: NSCalendarUnit.Day)]
+            return [notificationForOneDay(time, message: message, interval: NSCalendarUnit.Day, userInfo: userInfo)]
         }
     }
     
     
-    static func notificationForOneDay(time: NSDate, message: String, interval: NSCalendarUnit) -> UILocalNotification {
+    static func notificationForOneDay(time: NSDate, message: String, interval: NSCalendarUnit, userInfo: String) -> UILocalNotification {
         let notification = UILocalNotification()
         notification.fireDate = time
         notification.alertBody = message
         notification.alertAction = "Happy wake up"
+        // TODO needs attribution to https://www.freesound.org/people/FoolBoyMedia/sounds/246390/
+        // more https://www.freesound.org/people/Corsica_S/sounds/321389/
+        // https://www.freesound.org/people/mareproduction/sounds/324156/
         notification.soundName = "246390__foolboymedia__chiming-out.wav"
         notification.repeatInterval = interval
+        notification.userInfo = [WakeUp.notificationUserInfoKey: userInfo]
         return notification
     }
     
