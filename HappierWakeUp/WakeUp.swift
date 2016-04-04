@@ -104,6 +104,7 @@ struct WakeUp{
     static let timeReadyForBedKey = "timeReadyForBedKey"
     static let isOnKey = "isOnKey"
     static let notificationUserInfoKey = "notificationUserInfoKey"
+    static let repeatOnlyWeekdaysKey = "repeatOnlyWeekdaysKey"
     static let wakeUpValue = "WakeUpValue"
     static let goToBedValue = "goToBedUserInfo"
     
@@ -120,11 +121,12 @@ struct WakeUp{
         let sleep = HoursOfSleep(rawValue: dictionary.objectForKey(WakeUp.needHoursOfSleepKey) as! Int)
         let prepare = TimeReadyForBed(rawValue: dictionary.objectForKey(WakeUp.timeReadyForBedKey) as! Int)
         let on = dictionary.objectForKey(WakeUp.isOnKey) as! Bool
-        self.init(time, sleep: sleep, prepare: prepare, isOn: on)
+        let repeatWeekdays = dictionary.objectForKey(WakeUp.repeatOnlyWeekdaysKey) as! Bool
+        self.init(time, sleep: sleep, prepare: prepare, isOn: on, repeatOnlyWeekdays: repeatWeekdays)
     }
     
     func toDictionary() -> NSDictionary {
-        return NSDictionary(objects: [wakeUpTime, needHoursOfSleep.rawValue, timeReadyForBed.rawValue, isOn], forKeys: [WakeUp.wakeUpTimeKey, WakeUp.needHoursOfSleepKey, WakeUp.timeReadyForBedKey, WakeUp.isOnKey])
+        return NSDictionary(objects: [wakeUpTime, needHoursOfSleep.rawValue, timeReadyForBed.rawValue, isOn, repeatOnlyWeekdays], forKeys: [WakeUp.wakeUpTimeKey, WakeUp.needHoursOfSleepKey, WakeUp.timeReadyForBedKey, WakeUp.isOnKey, WakeUp.repeatOnlyWeekdaysKey])
     }
     
     func goToBedTime() -> NSDate {
