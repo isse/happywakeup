@@ -209,15 +209,15 @@
                         <viewControllerLayoutGuide type="top" id="3XJ-WX-TIr"/>
                         <viewControllerLayoutGuide type="bottom" id="d7U-hW-pNp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7bv-Su-v6A">
+                    <view key="view" contentMode="center" id="7bv-Su-v6A">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="8kQ-YL-f2R">
-                                <rect key="frame" x="60" y="238" width="480" height="125"/>
+                                <rect key="frame" x="60" y="237" width="480" height="125"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without notifications this really doesn't work :( Please enable notifications in Settings so you can set wake up." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiJ-vM-30x">
-                                        <rect key="frame" x="6" y="0.0" width="468" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Unfortunately this really doesn't work without notifications. Please enable notifications in Settings so you can set wake up." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiJ-vM-30x">
+                                        <rect key="frame" x="2" y="0.0" width="477" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -246,6 +246,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

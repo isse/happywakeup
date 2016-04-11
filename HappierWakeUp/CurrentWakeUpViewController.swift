@@ -95,7 +95,6 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
         } else {
             updateViewWithWakeUp(currentWakeUp!)
         }
-        //TODO these get garbage collected?
         updateView = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(CurrentWakeUpViewController.updateIfWakeUpSet), userInfo: nil, repeats: true)
     }
     
@@ -132,8 +131,8 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
         formatter.timeStyle = .ShortStyle
         goToBedInLabel.text = "Go to bed \(wakeUp.goToBedInString())"
         wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(wakeUp.wakeUpTime))"
-        goToBedInLabel.enabled = true
-        wakeUpAtLabel.enabled = true
+        goToBedInLabel.enabled = wakeUp.isOn
+        wakeUpAtLabel.enabled = wakeUp.isOn
         wakeUpOn.on = wakeUp.isOn
     }
     
@@ -144,6 +143,7 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
     func setWakeUpOnOff(on: Bool) {
         if on {
             if ViewController.havePermissionForNotification() {
+                currentWakeUp!.isOn = true
                 ViewController.setWakeUpForTime(currentWakeUp!)
                 goToBedInLabel.enabled = on
                 wakeUpAtLabel.enabled = on
@@ -158,6 +158,7 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
             }
         } else {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
+            currentWakeUp!.isOn = false
             goToBedInLabel.enabled = on
             wakeUpAtLabel.enabled = on
         }
