@@ -129,7 +129,7 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
         goToBedInLabel.text = "Go to bed \(wakeUp.goToBedInString())"
-        wakeUpAtLabel.text = "So you wake up happy at \(formatter.stringFromDate(wakeUp.wakeUpTime))"
+        wakeUpAtLabel.text = "So you wake up happy at \n \(formatter.stringFromDate(wakeUp.wakeUpTime))"
         goToBedInLabel.enabled = wakeUp.isOn
         wakeUpAtLabel.enabled = wakeUp.isOn
         wakeUpOn.on = wakeUp.isOn
