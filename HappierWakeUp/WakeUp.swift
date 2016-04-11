@@ -177,7 +177,8 @@ struct WakeUp{
                     multiplier = diff > 0 ? diff : (diff == 0 ? diff : diff + 7 )
                 }
                 let weekdayTime = time.dateByAddingTimeInterval(Double(multiplier * 24 * 60 * 60))
-                return notificationForOneDay(weekdayTime, message: message, interval: NSCalendarUnit.WeekOfYear, userInfo: userInfo)
+                let futureWeekdayTime = NSDate().compare(weekdayTime) == NSComparisonResult.OrderedDescending ? time.dateByAddingTimeInterval(Double((multiplier + 7) * 24 * 60 * 60)) : weekdayTime
+                return notificationForOneDay(futureWeekdayTime, message: message, interval: NSCalendarUnit.WeekOfYear, userInfo: userInfo)
             }
             return notifications
             
