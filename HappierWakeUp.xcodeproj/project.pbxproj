@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2983992B1CBBF3F30010B3FD /* ExtendUiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */; };
 		29850E751C8C7B920037A83D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E741C8C7B920037A83D /* AppDelegate.swift */; };
 		29850E771C8C7B920037A83D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E761C8C7B920037A83D /* ViewController.swift */; };
 		29850E7A1C8C7B920037A83D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29850E781C8C7B920037A83D /* Main.storyboard */; };
@@ -14,11 +15,11 @@
 		29850E7F1C8C7B920037A83D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29850E7D1C8C7B920037A83D /* LaunchScreen.storyboard */; };
 		29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */; };
 		29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D291CA92C0F00DFC05A /* WakeUp.swift */; };
-		29B05D2C1CA9A77B00DFC05A /* EnableNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D2B1CA9A77B00DFC05A /* EnableNotificationsViewController.swift */; };
 		29DA990C1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendUiViewController.swift; sourceTree = "<group>"; };
 		29850E711C8C7B920037A83D /* HappierWakeUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappierWakeUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29850E741C8C7B920037A83D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29850E761C8C7B920037A83D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		29850E801C8C7B920037A83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWakeUpViewController.swift; sourceTree = "<group>"; };
 		29B05D291CA92C0F00DFC05A /* WakeUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
-		29B05D2B1CA9A77B00DFC05A /* EnableNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnableNotificationsViewController.swift; sourceTree = "<group>"; };
 		29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "246390__foolboymedia__chiming-out.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 				29850E801C8C7B920037A83D /* Info.plist */,
 				29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */,
 				29B05D291CA92C0F00DFC05A /* WakeUp.swift */,
-				29B05D2B1CA9A77B00DFC05A /* EnableNotificationsViewController.swift */,
+				2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */,
 			);
 			path = HappierWakeUp;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 				29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */,
 				29850E771C8C7B920037A83D /* ViewController.swift in Sources */,
 				29850E751C8C7B920037A83D /* AppDelegate.swift in Sources */,
-				29B05D2C1CA9A77B00DFC05A /* EnableNotificationsViewController.swift in Sources */,
+				2983992B1CBBF3F30010B3FD /* ExtendUiViewController.swift in Sources */,
 				29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

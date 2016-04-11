@@ -13,7 +13,7 @@ protocol GetNotifiedOfWakeUp {
     func setWakeUpWhenNavigatingBack(wakeUp: WakeUp)
 }
 
-class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, NotificationSettingsRegistered {
+class ViewController: UIViewController, NotificationSettingsRegistered {
     
     var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
@@ -21,7 +21,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
     @IBOutlet var baseView: UIView!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
     @IBOutlet weak var repeatInterval: UISegmentedControl!
-    
     @IBOutlet weak var needSleep: UISegmentedControl!
     @IBOutlet weak var timeToPrepare: UISegmentedControl!
 
@@ -95,15 +94,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
         if granted {
             setWakeUpWithViewDataAndDismis()
         } else {
-            let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnableNotificationsViewControllerId") as! EnableNotificationsViewController
-            viewController.modalPresentationStyle = .Popover
-            viewController.preferredContentSize = CGSizeMake(200, 400)
-            viewController.popoverPresentationController?.sourceView = self.view
-            viewController.popoverPresentationController?.sourceRect = CGRectMake(100,100,0,0)
-            self.presentViewController(viewController, animated: true){}
-            let popoverMenuViewController = viewController.popoverPresentationController
-            popoverMenuViewController?.permittedArrowDirections = .Any
-            popoverMenuViewController?.delegate = self
+            showNotificationAlertViewController()
         }
     }
 }

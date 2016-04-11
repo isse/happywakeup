@@ -201,66 +201,6 @@
             </objects>
             <point key="canvasLocation" x="826" y="-126"/>
         </scene>
-        <!--Enable Notifications View Controller-->
-        <scene sceneID="Xxq-Qi-62d">
-            <objects>
-                <viewController storyboardIdentifier="EnableNotificationsViewControllerId" modalPresentationStyle="overFullScreen" id="0Is-v5-VJ9" customClass="EnableNotificationsViewController" customModule="HappierWakeUp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3XJ-WX-TIr"/>
-                        <viewControllerLayoutGuide type="bottom" id="d7U-hW-pNp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="center" id="7bv-Su-v6A">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="8kQ-YL-f2R">
-                                <rect key="frame" x="60" y="237" width="480" height="125"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Unfortunately this really doesn't work without notifications. Please enable notifications in Settings so you can set wake up." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiJ-vM-30x">
-                                        <rect key="frame" x="2" y="0.0" width="477" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="jla-KS-jHN">
-                                        <rect key="frame" x="134" y="95" width="213" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWk-kL-9fM">
-                                                <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cancelEnableNotifications:" destination="0Is-v5-VJ9" eventType="touchUpInside" id="SCH-Wi-LRG"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AE-JI-ope">
-                                                <rect key="frame" x="116" y="0.0" width="97" height="30"/>
-                                                <state key="normal" title="Go to settings">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="goToSettings:" destination="0Is-v5-VJ9" eventType="touchUpInside" id="msK-QR-Xxe"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8kQ-YL-f2R" firstAttribute="centerY" secondItem="7bv-Su-v6A" secondAttribute="centerY" id="9O7-YL-7Gu"/>
-                            <constraint firstItem="8kQ-YL-f2R" firstAttribute="width" secondItem="7bv-Su-v6A" secondAttribute="width" multiplier="0.8" id="UEn-6K-6Zf"/>
-                            <constraint firstItem="8kQ-YL-f2R" firstAttribute="centerX" secondItem="7bv-Su-v6A" secondAttribute="centerX" id="Ure-97-d9t"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="69e-h7-zUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1599" y="-126"/>
-        </scene>
         <!--Current Wake Up View Controller-->
         <scene sceneID="lyJ-s6-vZF">
             <objects>
@@ -288,15 +228,26 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-tI-kdS">
                                         <rect key="frame" x="84" y="214" width="392" height="31"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-XS-iQU">
-                                                <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
-                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="wakeUpOnOffSet:" destination="OLW-h4-3OA" eventType="valueChanged" id="Ieo-yS-P6o"/>
-                                                </connections>
-                                            </switch>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nzW-sx-USO">
+                                                <rect key="frame" x="0.0" y="0.0" width="157" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notify me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwW-Zy-000">
+                                                        <rect key="frame" x="0.0" y="0.0" width="92" height="31"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-XS-iQU">
+                                                        <rect key="frame" x="108" y="0.0" width="51" height="31"/>
+                                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <action selector="wakeUpOnOffSet:" destination="OLW-h4-3OA" eventType="valueChanged" id="Ieo-yS-P6o"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAH-wc-QSC">
                                                 <rect key="frame" x="357" y="0.0" width="35" height="31"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>

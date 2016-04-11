@@ -31,22 +31,21 @@ extension UIView {
     }
 }
 
-class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationControllerDelegate, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
-    @IBOutlet weak var goodMorningLabel: UILabel!
+class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
     
     let storageKey = "currentWakeUp"
     var currentWakeUp: WakeUp?
     var updateView: NSTimer?
     
+    @IBOutlet weak var goodMorningLabel: UILabel!
     @IBOutlet var baseView: UIView!
+    @IBOutlet weak var goToBedInLabel: UILabel!
+    @IBOutlet weak var wakeUpAtLabel: UILabel!
+    @IBOutlet weak var wakeUpOn: UISwitch!
+
     @IBAction func editWakeUp(sender: AnyObject) {
         navigateToEditWakeUpViewWith(currentWakeUp!)
     }
-    
-    @IBOutlet weak var goToBedInLabel: UILabel!
-    
-    @IBOutlet weak var wakeUpAtLabel: UILabel!
-    @IBOutlet weak var wakeUpOn: UISwitch!
     
     @IBAction func wakeUpOnOffSet(sender: AnyObject) {
         assert(currentWakeUp != nil)
@@ -149,12 +148,7 @@ class CurrentWakeUpViewController: UIViewController, UIPopoverPresentationContro
                 wakeUpAtLabel.enabled = on
             } else {
                 wakeUpOn.on = false
-                let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnableNotificationsViewControllerId") as! EnableNotificationsViewController
-                viewController.modalPresentationStyle = .Popover
-                self.presentViewController(viewController, animated: true){}
-                let popoverMenuViewController = viewController.popoverPresentationController
-                popoverMenuViewController?.permittedArrowDirections = .Any
-                popoverMenuViewController?.delegate = self
+                showNotificationAlertViewController()
             }
         } else {
             UIApplication.sharedApplication().cancelAllLocalNotifications()
