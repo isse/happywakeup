@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2983992B1CBBF3F30010B3FD /* ExtendUiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */; };
+		29850E751C8C7B920037A83D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E741C8C7B920037A83D /* AppDelegate.swift */; };
+		29850E771C8C7B920037A83D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E761C8C7B920037A83D /* ViewController.swift */; };
+		29850E7A1C8C7B920037A83D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29850E781C8C7B920037A83D /* Main.storyboard */; };
+		29850E7C1C8C7B920037A83D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29850E7B1C8C7B920037A83D /* Assets.xcassets */; };
+		29850E7F1C8C7B920037A83D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29850E7D1C8C7B920037A83D /* LaunchScreen.storyboard */; };
+		29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */; };
+		29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D291CA92C0F00DFC05A /* WakeUp.swift */; };
+		29DA990C1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendUiViewController.swift; sourceTree = "<group>"; };
+		29850E711C8C7B920037A83D /* HappierWakeUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappierWakeUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29850E741C8C7B920037A83D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		29850E761C8C7B920037A83D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		29850E791C8C7B920037A83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		29850E7B1C8C7B920037A83D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		29850E7E1C8C7B920037A83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		29850E801C8C7B920037A83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWakeUpViewController.swift; sourceTree = "<group>"; };
+		29B05D291CA92C0F00DFC05A /* WakeUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
+		29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "246390__foolboymedia__chiming-out.wav"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29850E6E1C8C7B920037A83D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29850E681C8C7B920037A83D = {
+			isa = PBXGroup;
+			children = (
+				29850E731C8C7B920037A83D /* HappierWakeUp */,
+				29850E721C8C7B920037A83D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		29850E721C8C7B920037A83D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29850E711C8C7B920037A83D /* HappierWakeUp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29850E731C8C7B920037A83D /* HappierWakeUp */ = {
+			isa = PBXGroup;
+			children = (
+				29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */,
+				29850E741C8C7B920037A83D /* AppDelegate.swift */,
+				29850E761C8C7B920037A83D /* ViewController.swift */,
+				29850E781C8C7B920037A83D /* Main.storyboard */,
+				29850E7B1C8C7B920037A83D /* Assets.xcassets */,
+				29850E7D1C8C7B920037A83D /* LaunchScreen.storyboard */,
+				29850E801C8C7B920037A83D /* Info.plist */,
+				29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */,
+				29B05D291CA92C0F00DFC05A /* WakeUp.swift */,
+				2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */,
+			);
+			path = HappierWakeUp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29850E701C8C7B920037A83D /* HappierWakeUp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29850E831C8C7B920037A83D /* Build configuration list for PBXNativeTarget "HappierWakeUp" */;
+			buildPhases = (
+				29850E6D1C8C7B920037A83D /* Sources */,
+				29850E6E1C8C7B920037A83D /* Frameworks */,
+				29850E6F1C8C7B920037A83D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HappierWakeUp;
+			productName = HappierWakeUp;
+			productReference = 29850E711C8C7B920037A83D /* HappierWakeUp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29850E691C8C7B920037A83D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Essi Vehmersalo";
+				TargetAttributes = {
+					29850E701C8C7B920037A83D = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = XU553PK3WJ;
+					};
+				};
+			};
+			buildConfigurationList = 29850E6C1C8C7B920037A83D /* Build configuration list for PBXProject "GoodMorning" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 29850E681C8C7B920037A83D;
+			productRefGroup = 29850E721C8C7B920037A83D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29850E701C8C7B920037A83D /* HappierWakeUp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29850E6F1C8C7B920037A83D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29850E7F1C8C7B920037A83D /* LaunchScreen.storyboard in Resources */,
+				29850E7C1C8C7B920037A83D /* Assets.xcassets in Resources */,
+				29850E7A1C8C7B920037A83D /* Main.storyboard in Resources */,
+				29DA990C1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29850E6D1C8C7B920037A83D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */,
+				29850E771C8C7B920037A83D /* ViewController.swift in Sources */,
+				29850E751C8C7B920037A83D /* AppDelegate.swift in Sources */,
+				2983992B1CBBF3F30010B3FD /* ExtendUiViewController.swift in Sources */,
+				29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		29850E781C8C7B920037A83D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29850E791C8C7B920037A83D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		29850E7D1C8C7B920037A83D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29850E7E1C8C7B920037A83D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		29850E811C8C7B920037A83D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		29850E821C8C7B920037A83D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		29850E841C8C7B920037A83D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = HappierWakeUp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.essivehmersalo.GoodMorning;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		29850E851C8C7B920037A83D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = HappierWakeUp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.essivehmersalo.GoodMorning;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		29850E6C1C8C7B920037A83D /* Build configuration list for PBXProject "GoodMorning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29850E811C8C7B920037A83D /* Debug */,
+				29850E821C8C7B920037A83D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29850E831C8C7B920037A83D /* Build configuration list for PBXNativeTarget "HappierWakeUp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29850E841C8C7B920037A83D /* Debug */,
+				29850E851C8C7B920037A83D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29850E691C8C7B920037A83D /* Project object */;
+}
