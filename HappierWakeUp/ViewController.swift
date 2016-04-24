@@ -7,16 +7,19 @@
 //
 
 import UIKit
-
+import AVFoundation
 
 protocol GetNotifiedOfWakeUp {
     func setWakeUpWhenNavigatingBack(wakeUp: WakeUp)
 }
 
-class ViewController: UIViewController, NotificationSettingsRegistered {
+class ViewController: UIViewController, NotificationSettingsRegistered, AVAudioPlayerDelegate {
     
     var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
+    var wakeUpPlayer: AVAudioPlayer?
+    let playImage = UIImage(named: "ic_play_arrow")
+    let stopImage = UIImage(named: "ic_stop")
 
     @IBOutlet var baseView: UIView!
     @IBOutlet weak var timeToWakeUp: UIDatePicker!
@@ -33,6 +36,17 @@ class ViewController: UIViewController, NotificationSettingsRegistered {
         // TODO or else?
     }
 
+    @IBOutlet weak var playWakeUpBtn: UIButton!
+    
+    @IBAction func tryWakeUp(sender: AnyObject) {
+        if tryWakeUpIsPlaying() {
+            stopWakeUpPlayer()
+        }
+        else {
+            playWakeUp()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,6 +69,7 @@ class ViewController: UIViewController, NotificationSettingsRegistered {
             prepare: TimeReadyForBed.fromIndex(timeToPrepare.selectedSegmentIndex),
             repeatOnlyWeekdays: repeatInterval.selectedSegmentIndex == 0
         )
+        stopWakeUpPlayer()
         ViewController.setWakeUpForTime(wakeUp)
         delegate?.setWakeUpWhenNavigatingBack(wakeUp)
         dismissViewControllerAnimated(true){}
@@ -96,6 +111,45 @@ class ViewController: UIViewController, NotificationSettingsRegistered {
         } else {
             showNotificationAlertViewController()
         }
+    }
+    
+    // AVAudioPlayerDelegate
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer,
+    successfully flag: Bool) {
+        playWakeUpBtn.setImage(playImage, forState: .Normal)
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+        // not much to do here
+    }
+    
+    func playWakeUp() {
+        let path = NSBundle.mainBundle().pathForResource("246390__foolboymedia__chiming-out.wav", ofType:nil)!
+        let url = NSURL(fileURLWithPath: path)
+        
+        do {
+            wakeUpPlayer = try AVAudioPlayer(contentsOfURL: url)
+            wakeUpPlayer?.delegate = self
+            wakeUpPlayer?.play()
+            playWakeUpBtn.setImage(stopImage, forState: .Normal)
+        } catch {
+            // couldn't load file
+        }
+    }
+    
+    func tryWakeUpIsPlaying() -> Bool {
+        if playWakeUpBtn.currentImage == stopImage {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func stopWakeUpPlayer() {
+        if wakeUpPlayer != nil && wakeUpPlayer!.playing {
+            wakeUpPlayer?.stop()
+        }
+        playWakeUpBtn.setImage(playImage, forState: .Normal)
     }
 }
 

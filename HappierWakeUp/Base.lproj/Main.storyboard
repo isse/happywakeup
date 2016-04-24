@@ -38,13 +38,13 @@
                                 <rect key="frame" x="20" y="0.0" width="560" height="556"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-Zs-ham">
-                                        <rect key="frame" x="0.0" y="56" width="560" height="663"/>
+                                        <rect key="frame" x="0.0" y="56" width="560" height="707"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g1c-Be-3IZ" userLabel="Time Stack View">
-                                                <rect key="frame" x="5" y="0.0" width="552" height="297"/>
+                                                <rect key="frame" x="58" y="0.0" width="446" height="341"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I want to wake up at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3w-RE-rk0">
-                                                        <rect key="frame" x="170" y="0.0" width="213" height="21"/>
+                                                        <rect key="frame" x="117" y="0.0" width="213" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="3IW-eR-RNb"/>
                                                         </constraints>
@@ -53,14 +53,23 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-sg-sxb">
-                                                        <rect key="frame" x="116" y="41" width="320" height="216"/>
+                                                        <rect key="frame" x="63" y="41" width="320" height="216"/>
                                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <date key="date" timeIntervalSinceReferenceDate="478968872.388708">
                                                             <!--2016-03-06 14:54:32 +0000-->
                                                         </date>
                                                     </datePicker>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Remember to keep your device sounds on, so you hear the notifications." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDv-H9-f2q">
-                                                        <rect key="frame" x="0.0" y="277" width="552" height="20"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xaw-a9-Mr7">
+                                                        <rect key="frame" x="162" y="277" width="122" height="24"/>
+                                                        <state key="normal" title="Try wake up" image="ic_play_arrow">
+                                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tryWakeUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2gj-uu-EOp"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Keep your device sounds on, so you hear the notifications." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDv-H9-f2q">
+                                                        <rect key="frame" x="0.0" y="321" width="446" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -68,16 +77,16 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Optional" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-C9-8Aj">
-                                                <rect key="frame" x="235" y="331" width="91" height="29"/>
+                                                <rect key="frame" x="235" y="375" width="91" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="i7F-fQ-4dw" userLabel="Repeat Stack View">
-                                                <rect key="frame" x="5" y="394" width="552" height="63"/>
+                                                <rect key="frame" x="58" y="438" width="446" height="63"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTy-Cs-eIS">
-                                                        <rect key="frame" x="250" y="0.0" width="52" height="21"/>
+                                                        <rect key="frame" x="197" y="0.0" width="52" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="9GM-lg-fCx"/>
                                                         </constraints>
@@ -86,7 +95,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-kC-wOX">
-                                                        <rect key="frame" x="0.0" y="35" width="552" height="29"/>
+                                                        <rect key="frame" x="0.0" y="35" width="446" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="ozU-eE-C5f"/>
                                                         </constraints>
@@ -102,10 +111,10 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LhS-d1-8B8" userLabel="Sleep Time Stack View">
-                                                <rect key="frame" x="5" y="491" width="552" height="69"/>
+                                                <rect key="frame" x="58" y="535" width="446" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I need to sleep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-P0-WJP">
-                                                        <rect key="frame" x="223" y="0.0" width="107" height="21"/>
+                                                        <rect key="frame" x="170" y="0.0" width="107" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="pEq-pS-PL5"/>
                                                         </constraints>
@@ -114,7 +123,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-HK-nAC">
-                                                        <rect key="frame" x="0.0" y="41" width="552" height="29"/>
+                                                        <rect key="frame" x="0.0" y="41" width="446" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="fPa-il-wfu"/>
                                                         </constraints>
@@ -133,10 +142,10 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LNH-QX-92J" userLabel="Prepare Time Stack View">
-                                                <rect key="frame" x="5" y="594" width="552" height="69"/>
+                                                <rect key="frame" x="58" y="638" width="446" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="And to get ready for bed I need" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-NX-eSS">
-                                                        <rect key="frame" x="163" y="0.0" width="226" height="21"/>
+                                                        <rect key="frame" x="110" y="0.0" width="226" height="21"/>
                                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="Gep-UW-gQF"/>
@@ -146,7 +155,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-Iu-COW">
-                                                        <rect key="frame" x="0.0" y="41" width="552" height="29"/>
+                                                        <rect key="frame" x="0.0" y="41" width="446" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="V0J-Jd-t4p"/>
                                                         </constraints>
@@ -198,6 +207,7 @@
                     <connections>
                         <outlet property="baseView" destination="8bC-Xf-vdC" id="lwR-qc-05J"/>
                         <outlet property="needSleep" destination="hQ7-HK-nAC" id="h54-rj-YWT"/>
+                        <outlet property="playWakeUpBtn" destination="Xaw-a9-Mr7" id="CuO-gG-6NW"/>
                         <outlet property="repeatInterval" destination="FBK-kC-wOX" id="mEn-Po-1Ri"/>
                         <outlet property="timeToPrepare" destination="e0G-Iu-COW" id="qet-S7-LBk"/>
                         <outlet property="timeToWakeUp" destination="PFR-sg-sxb" id="EGD-Md-T3t"/>
@@ -345,4 +355,7 @@
             <point key="canvasLocation" x="47" y="-126"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_play_arrow" width="24" height="24"/>
+    </resources>
 </document>
