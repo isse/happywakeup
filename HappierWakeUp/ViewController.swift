@@ -62,6 +62,10 @@ class ViewController: UIViewController, NotificationSettingsRegistered, AVAudioP
         // Dispose of any resources that can be recreated.
     }
 
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     func setWakeUpWithViewDataAndDismis() {
         wakeUp = WakeUp(
             timeToWakeUp.date,
