@@ -73,6 +73,8 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         if storedWakeUp != nil {
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        baseView.addGestureRecognizer(tapGesture)
     }
     
     func applicationDidBecomeActive(notification: NSNotification) {
@@ -153,6 +155,9 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
 
     func goToBedAlert() {
         
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
     }
     
     func updateIfWakeUpSet() {

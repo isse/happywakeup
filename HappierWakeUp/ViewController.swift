@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import AVFoundation
 
 protocol GetNotifiedOfWakeUp {
     func setWakeUpWhenNavigatingBack(wakeUp: WakeUp)
 }
 
-class ViewController: UIViewController, NotificationSettingsRegistered, AVAudioPlayerDelegate {
+class ViewController: UIViewController, NotificationSettingsRegistered, AlertPlayerDelegate {
     
     var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
-    var wakeUpPlayer: AVAudioPlayer?
+    var wakeUpPlayer = AlertPlayer()
     let playImage = UIImage(named: "ic_play_arrow")
     let stopImage = UIImage(named: "ic_stop")
 
@@ -55,6 +54,7 @@ class ViewController: UIViewController, NotificationSettingsRegistered, AVAudioP
         needSleep.selectedSegmentIndex = wakeUp.needHoursOfSleep.toUIIndex()
         timeToPrepare.selectedSegmentIndex = wakeUp.timeReadyForBed.toUIIndex()
         self.view.layerGradient(baseView.frame.size, dark: false)
+        wakeUpPlayer.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,43 +117,26 @@ class ViewController: UIViewController, NotificationSettingsRegistered, AVAudioP
         }
     }
     
-    // AVAudioPlayerDelegate
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer,
-    successfully flag: Bool) {
+    // AlertPlayerDelegate
+    func alertPlayingStopped() {
         playWakeUpBtn.setImage(playImage, forState: .Normal)
     }
     
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
-        // not much to do here
-    }
-    
     func playWakeUp() {
-        let path = NSBundle.mainBundle().pathForResource("246390__foolboymedia__chiming-out.wav", ofType:nil)!
-        let url = NSURL(fileURLWithPath: path)
-        
-        do {
-            wakeUpPlayer = try AVAudioPlayer(contentsOfURL: url)
-            wakeUpPlayer?.delegate = self
-            wakeUpPlayer?.play()
-            playWakeUpBtn.setImage(stopImage, forState: .Normal)
-        } catch {
-            // couldn't load file
-        }
+        wakeUpPlayer.playWakeUp()
+        playWakeUpBtn.setImage(stopImage, forState: .Normal)
     }
     
+    func stopWakeUpPlayer() {
+        wakeUpPlayer.stopWakeUpPlayer()
+    }
+
     func tryWakeUpIsPlaying() -> Bool {
         if playWakeUpBtn.currentImage == stopImage {
             return true
         } else {
             return false
         }
-    }
-
-    func stopWakeUpPlayer() {
-        if wakeUpPlayer != nil && wakeUpPlayer!.playing {
-            wakeUpPlayer?.stop()
-        }
-        playWakeUpBtn.setImage(playImage, forState: .Normal)
     }
 }
 

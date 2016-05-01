@@ -343,7 +343,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="baseView" destination="x3A-Yl-onC" id="C43-Ms-cLX"/>
+                        <outlet property="baseView" destination="x3A-Yl-onC" id="DDy-G5-J0E"/>
                         <outlet property="goToBedInLabel" destination="cQK-47-bpO" id="r64-S1-quu"/>
                         <outlet property="goodMorningLabel" destination="xcK-Yl-aWN" id="dDk-Qs-DQm"/>
                         <outlet property="wakeUpAtLabel" destination="riM-J4-ad1" id="P7P-sB-3Bu"/>
