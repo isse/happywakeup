@@ -36,6 +36,8 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     let storageKey = "currentWakeUp"
     var currentWakeUp: WakeUp?
     var updateView: NSTimer?
+    var wakeUpTimers: [NSTimer] = []
+    var goToBedTimers: [NSTimer] = []
     
     @IBOutlet weak var goodMorningLabel: UILabel!
     @IBOutlet var baseView: UIView!
@@ -60,7 +62,7 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
  
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "applicationDidBecomeActive:",
+            selector: #selector (AppDelegate.applicationDidBecomeActive),
             name: UIApplicationDidBecomeActiveNotification,
             object: nil)
 
@@ -85,7 +87,6 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
             })
         }
     }
-
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -93,6 +94,8 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
             navigateToEditWakeUpViewWith(WakeUp(NSDate(), sleep: nil, prepare: nil))
         } else {
             updateViewWithWakeUp(currentWakeUp!)
+            rescheduleTimers(currentWakeUp!)
+
         }
         updateView = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(CurrentWakeUpViewController.updateIfWakeUpSet), userInfo: nil, repeats: true)
     }
@@ -117,6 +120,39 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         storeWakeUp(wakeUp)
         self.currentWakeUp = wakeUp
         updateViewWithWakeUp(wakeUp)
+        rescheduleTimers(wakeUp)
+    }
+    
+    func rescheduleTimers(wakeUp: WakeUp) {
+        for timer in wakeUpTimers {
+            timer.invalidate()
+        }
+        for timer in goToBedTimers {
+            timer.invalidate()
+        }
+
+        wakeUpTimers = setTimersWithAlerts(wakeUp.getWakeUpAlerts(), selector: #selector (CurrentWakeUpViewController.wakeUpAlert))
+        goToBedTimers = setTimersWithAlerts(wakeUp.getGoToBedAlerts(), selector: #selector (CurrentWakeUpViewController.goToBedAlert))
+    }
+    
+    func setTimersWithAlerts(alerts: [AlertTime], selector: Selector) -> [NSTimer] {
+        let timers = alerts.map {
+            (let alert) -> NSTimer in
+            return NSTimer.init(fireDate: alert.time, interval: alert.repeatInterval(), target: self, selector: selector, userInfo: nil, repeats: true)
+        }
+        let runLoop = NSRunLoop.currentRunLoop()
+        for timer in timers {
+            runLoop.addTimer(timer, forMode: NSRunLoopCommonModes)
+        }
+        return timers
+    }
+    
+    
+    func wakeUpAlert() {
+    }
+
+    func goToBedAlert() {
+        
     }
     
     func updateIfWakeUpSet() {

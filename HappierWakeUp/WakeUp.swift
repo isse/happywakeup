@@ -90,6 +90,21 @@ enum TimeReadyForBed: Int {
     }
 }
 
+struct AlertTime {
+    let time: NSDate
+    let repeatTimeUnit: NSCalendarUnit
+    func repeatInterval() -> NSTimeInterval {
+        switch repeatTimeUnit {
+        case NSCalendarUnit.Day :
+            return 24 * 60 * 60 * 1000
+        case NSCalendarUnit.WeekOfYear :
+            return 7 * 24 * 60 * 60 * 1000
+        default:
+            assert(false, "Unsupported calendar unit \(repeatTimeUnit)")
+        }
+    }
+}
+
 struct WakeUp{
     let wakeUpTime: NSDate
     let wakeUpText = "It's time to wake up"
@@ -148,7 +163,7 @@ struct WakeUp{
         } else if minutes > 0 {
             return String(format: "in %0.2d min", minutes)
         } else {
-            return "now"
+            return ""
         }
         
     }
@@ -162,6 +177,17 @@ struct WakeUp{
         let time = wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval() - timeReadyForBed.asTimeInterval())
         let days = 1...5
         return WakeUp.notificationForWakeUp(time, message: goToBedText, days: days, userInfo: WakeUp.goToBedValue,repeatOnlyWeekdays: repeatOnlyWeekdays)
+    }
+
+    func getWakeUpAlerts() -> [AlertTime] {
+        let days = 2...6
+        return WakeUp.alertTimesForWakeUp(wakeUpTime, days: days, repeatOnlyWeekdays: repeatOnlyWeekdays)
+    }
+    
+    func getGoToBedAlerts() -> [AlertTime] {
+        let time = wakeUpTime.dateByAddingTimeInterval(-needHoursOfSleep.asTimeInterval() - timeReadyForBed.asTimeInterval())
+        let days = 1...5
+        return WakeUp.alertTimesForWakeUp(time, days: days, repeatOnlyWeekdays: repeatOnlyWeekdays)
     }
     
     static func notificationForWakeUp(time: NSDate, message: String, days: Range<Int>, userInfo: String, repeatOnlyWeekdays: Bool = true) -> [UILocalNotification] {
@@ -186,7 +212,30 @@ struct WakeUp{
             return [notificationForOneDay(time, message: message, interval: NSCalendarUnit.Day, userInfo: userInfo)]
         }
     }
-    
+
+    static func alertTimesForWakeUp(time: NSDate, days: Range<Int>, repeatOnlyWeekdays: Bool = true) -> [AlertTime] {
+        if repeatOnlyWeekdays {
+            let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
+            let flags : NSCalendarUnit = [.Hour, .Minute, .Weekday, .Day, .Month]
+            let components = calendar.components(flags, fromDate: time)
+            let notifications: [AlertTime] = days.map {
+                (let day) -> AlertTime in
+                let diff = day - components.weekday;
+                var multiplier = 0
+                if diff != 0 {
+                    multiplier = diff > 0 ? diff : (diff == 0 ? diff : diff + 7 )
+                }
+                let weekdayTime = time.dateByAddingTimeInterval(Double(multiplier * 24 * 60 * 60))
+                let futureWeekdayTime = NSDate().compare(weekdayTime) == NSComparisonResult.OrderedDescending ? time.dateByAddingTimeInterval(Double((multiplier + 7) * 24 * 60 * 60)) : weekdayTime
+                return AlertTime(time: futureWeekdayTime, repeatTimeUnit: NSCalendarUnit.WeekOfYear)
+            }
+            return notifications
+            
+        } else {
+            return [AlertTime(time: time, repeatTimeUnit: NSCalendarUnit.Day)]
+        }
+    }
+
     
     static func notificationForOneDay(time: NSDate, message: String, interval: NSCalendarUnit, userInfo: String) -> UILocalNotification {
         let notification = UILocalNotification()
@@ -201,6 +250,7 @@ struct WakeUp{
         notification.userInfo = [WakeUp.notificationUserInfoKey: userInfo]
         return notification
     }
+
     
     static func getTimeInFuture(time: NSDate) -> NSDate {
         // TODO maybe not elegant
