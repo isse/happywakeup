@@ -100,6 +100,7 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
 
     func applicationWillResignActive(notification: NSNotification) {
         invalidateTimers()
+        stopOnGoingAlert()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -117,6 +118,7 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     override func viewDidDisappear(animated: Bool) {
         super.viewDidAppear(animated)
         invalidateTimers()
+        stopOnGoingAlert()
     }
     
     override func didReceiveMemoryWarning() {
@@ -167,10 +169,11 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     
     func wakeUpAlert() {
         wakeUpPlayer.playWakeUp()
+        goodMorningLabel.hidden = false
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
-        wakeUpPlayer.stopWakeUpPlayer()
+        stopOnGoingAlert()
     }
     
     func updateIfWakeUpSet() {
@@ -210,6 +213,11 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
             goToBedInLabel.enabled = on
             wakeUpAtLabel.enabled = on
         }
+    }
+    
+    func stopOnGoingAlert() {
+        wakeUpPlayer.stopWakeUpPlayer()
+        goodMorningLabel.hidden = true
     }
     
     //protocol NotificationSettingsRegistered
