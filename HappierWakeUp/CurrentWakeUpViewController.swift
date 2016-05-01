@@ -34,10 +34,10 @@ extension UIView {
 class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
     
     let storageKey = "currentWakeUp"
+    let wakeUpPlayer = AlertPlayer()
     var currentWakeUp: WakeUp?
     var updateView: NSTimer?
     var wakeUpTimers: [NSTimer] = []
-    var goToBedTimers: [NSTimer] = []
     
     @IBOutlet weak var goodMorningLabel: UILabel!
     @IBOutlet var baseView: UIView!
@@ -62,10 +62,16 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
  
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: #selector (AppDelegate.applicationDidBecomeActive),
+            selector: #selector (CurrentWakeUpViewController.applicationDidBecomeActive),
             name: UIApplicationDidBecomeActiveNotification,
             object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector (CurrentWakeUpViewController.applicationWillResignActive),
+            name: UIApplicationWillResignActiveNotification,
+            object: nil)
 
+        
         self.view.layerGradient(baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -73,7 +79,7 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         if storedWakeUp != nil {
             currentWakeUp = WakeUp(dictionary: storedWakeUp as! NSDictionary)
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector (CurrentWakeUpViewController.handleTap))
         baseView.addGestureRecognizer(tapGesture)
     }
     
@@ -87,7 +93,13 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
                     selfish.goodMorningLabel.alpha = 0.0
                 }
             })
+        } else if currentWakeUp != nil {
+            rescheduleTimers(currentWakeUp!)
         }
+    }
+
+    func applicationWillResignActive(notification: NSNotification) {
+        invalidateTimers()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -100,6 +112,11 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
 
         }
         updateView = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(CurrentWakeUpViewController.updateIfWakeUpSet), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidAppear(animated)
+        invalidateTimers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,15 +143,14 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     }
     
     func rescheduleTimers(wakeUp: WakeUp) {
+        invalidateTimers()
+        wakeUpTimers = setTimersWithAlerts(wakeUp.getWakeUpAlerts(), selector: #selector (CurrentWakeUpViewController.wakeUpAlert))
+    }
+    
+    func invalidateTimers() {
         for timer in wakeUpTimers {
             timer.invalidate()
         }
-        for timer in goToBedTimers {
-            timer.invalidate()
-        }
-
-        wakeUpTimers = setTimersWithAlerts(wakeUp.getWakeUpAlerts(), selector: #selector (CurrentWakeUpViewController.wakeUpAlert))
-        goToBedTimers = setTimersWithAlerts(wakeUp.getGoToBedAlerts(), selector: #selector (CurrentWakeUpViewController.goToBedAlert))
     }
     
     func setTimersWithAlerts(alerts: [AlertTime], selector: Selector) -> [NSTimer] {
@@ -149,15 +165,12 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         return timers
     }
     
-    
     func wakeUpAlert() {
-    }
-
-    func goToBedAlert() {
-        
+        wakeUpPlayer.playWakeUp()
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
+        wakeUpPlayer.stopWakeUpPlayer()
     }
     
     func updateIfWakeUpSet() {

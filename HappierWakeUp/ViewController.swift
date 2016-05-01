@@ -16,7 +16,7 @@ class ViewController: UIViewController, NotificationSettingsRegistered, AlertPla
     
     var delegate: GetNotifiedOfWakeUp?
     var wakeUp: WakeUp!
-    var wakeUpPlayer = AlertPlayer()
+    let wakeUpPlayer = AlertPlayer()
     let playImage = UIImage(named: "ic_play_arrow")
     let stopImage = UIImage(named: "ic_stop")
 
