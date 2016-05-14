@@ -149,6 +149,10 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         return UIInterfaceOrientationMask.Portrait
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+
     func navigateToEditWakeUpViewWith(wakeUp: WakeUp) {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditViewControllerId") as! ViewController
         viewController.wakeUp = wakeUp
