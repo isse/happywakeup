@@ -30,10 +30,8 @@ enum HoursOfSleep: Int {
             return 2
         case .Nine:
             return 3
-        case .Ten:
-            return 4
         default:
-            assert(false, "Unkown HoursOfSleep \(self.rawValue)")
+            return 4
         }
     }
     
@@ -51,6 +49,7 @@ enum HoursOfSleep: Int {
             return .Ten
         default:
             assert(false, "Invalid HoursOfSleep \(index)")
+            return .Ten
         }
     }
 }
@@ -69,10 +68,8 @@ enum TimeReadyForBed: Int {
             return 0
         case .Hour:
             return 1
-        case .Two:
-            return 2
         default:
-            assert(false, "Unkown TimeReadyForBed \(self.rawValue)")
+            return 2
         }
     }
     
@@ -86,6 +83,7 @@ enum TimeReadyForBed: Int {
             return .Two
         default:
             assert(false, "Invalid TimeReadyForBed \(index)")
+            return .Two
         }
     }
 }
@@ -101,6 +99,7 @@ struct AlertTime {
             return 7 * 24 * 60 * 60 * 1000
         default:
             assert(false, "Unsupported calendar unit \(repeatTimeUnit)")
+            return 0
         }
     }
 }
