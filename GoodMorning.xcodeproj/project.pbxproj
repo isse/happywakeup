@@ -111,7 +111,7 @@
 				TargetAttributes = {
 					29850E701C8C7B920037A83D = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = XU553PK3WJ;
+						DevelopmentTeam = FHKAQDN7U4;
 					};
 				};
 			};
@@ -274,7 +274,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HappierWakeUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.essivehmersalo.GoodMorning;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exampledomain.essivehmersalo.goodmorning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -288,7 +288,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HappierWakeUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.essivehmersalo.GoodMorning;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exampledomain.essivehmersalo.goodmorning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
