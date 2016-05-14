@@ -53,7 +53,6 @@ class ViewController: UIViewController, NotificationSettingsRegistered, AlertPla
         repeatInterval.selectedSegmentIndex = wakeUp.repeatOnlyWeekdays ? 0 : 1
         needSleep.selectedSegmentIndex = wakeUp.needHoursOfSleep.toUIIndex()
         timeToPrepare.selectedSegmentIndex = wakeUp.timeReadyForBed.toUIIndex()
-        self.view.layerGradient(baseView.frame.size, dark: false)
         wakeUpPlayer.delegate = self
     }
 

@@ -29,6 +29,21 @@ extension UIView {
         layer.locations = [0.0, 1.0]
         self.layer.insertSublayer(layer, atIndex: 0)
     }
+
+    func addBackground() {
+        // screen width and height:
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        imageViewBackground.image = UIImage(named: "iPhone 6")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        self.addSubview(imageViewBackground)
+        self.sendSubviewToBack(imageViewBackground)
+    }
 }
 
 class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, NotificationSettingsRegistered {
@@ -71,8 +86,8 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
             name: UIApplicationWillResignActiveNotification,
             object: nil)
 
-        
-        self.view.layerGradient(baseView.frame.size)
+        self.view.addBackground()
+        //self.view.layerGradient(baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
         
         let storedWakeUp = NSUserDefaults.standardUserDefaults().objectForKey(storageKey)
