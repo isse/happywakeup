@@ -103,9 +103,13 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if delegate.launchedFromNotification == WakeUp.wakeUpValue {
             goodMorningLabel.hidden = false
+            wakeUpAtLabel.alpha = 0.4
+            goToBedInLabel.alpha = 0.4
             UIView.animateWithDuration(15, animations: { [weak self] in
                 if let selfish = self {
                     selfish.goodMorningLabel.alpha = 0.0
+                    selfish.wakeUpAtLabel.alpha = 1.0
+                    selfish.goToBedInLabel.alpha = 1.0
                 }
             })
         } else if currentWakeUp != nil {
@@ -237,5 +241,5 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     
     //protocol NotificationSettingsRegistered
     func notificationSettingsRegistered(granted: Bool) {}
-}
+    }
 
