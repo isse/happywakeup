@@ -26,7 +26,9 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" red="0.62745098039215685" green="0.70980392156862748" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="AWk-gp-0PI"/>
+                                    <constraint firstAttribute="height" constant="40" id="AWk-gp-0PI">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="72"/>
+                                    </constraint>
                                 </constraints>
                                 <items>
                                     <barButtonItem systemItem="done" id="VbT-HH-gbt">
@@ -36,6 +38,14 @@
                                     </barButtonItem>
                                 </items>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="AWk-gp-0PI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="756" width="800" height="60"/>
+                                </variation>
                             </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25C-CE-l5y">
                                 <rect key="frame" x="20" y="0.0" width="560" height="556"/>
@@ -50,6 +60,13 @@
                                                         <rect key="frame" x="208" y="0.0" width="121" height="28"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="208" y="0.0" width="121" height="28"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
+                                                            <rect key="frame" x="281" y="0.0" width="182" height="42"/>
+                                                        </variation>
                                                     </label>
                                                     <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-sg-sxb">
                                                         <rect key="frame" x="109" y="48" width="320" height="216"/>
@@ -57,12 +74,25 @@
                                                         <date key="date" timeIntervalSinceReferenceDate="478968872.388708">
                                                             <!--2016-03-06 14:54:32 +0000-->
                                                         </date>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="109" y="48" width="320" height="216"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="212" y="62" width="320" height="216"/>
+                                                        </variation>
                                                     </datePicker>
                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xaw-a9-Mr7">
                                                         <rect key="frame" x="192" y="284" width="153" height="24"/>
                                                         <state key="normal" title="Play notification" image="ic_play_arrow">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="192" y="284" width="153" height="24"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                            <rect key="frame" x="281" y="298" width="181" height="27"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="tryWakeUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2gj-uu-EOp"/>
                                                         </connections>
@@ -72,13 +102,32 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="328" width="538" height="40"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="345" width="744" height="20"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="12" y="0.0" width="538" height="368"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="9" y="0.0" width="744" height="365"/>
+                                                </variation>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Optional" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-C9-8Aj">
                                                 <rect key="frame" x="235" y="402" width="91" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="235" y="402" width="91" height="29"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                    <rect key="frame" x="313" y="399" width="135" height="43"/>
+                                                </variation>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="i7F-fQ-4dw" userLabel="Repeat Stack View">
                                                 <rect key="frame" x="12" y="465" width="538" height="63"/>
@@ -91,6 +140,13 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="243" y="0.0" width="52" height="21"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <rect key="frame" x="340" y="0.0" width="64" height="21"/>
+                                                        </variation>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-kC-wOX">
                                                         <rect key="frame" x="0.0" y="35" width="538" height="29"/>
@@ -102,11 +158,23 @@
                                                             <segment title="Every day"/>
                                                         </segments>
                                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="35" width="538" height="29"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="35" width="744" height="29"/>
+                                                        </variation>
                                                     </segmentedControl>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="FBK-kC-wOX" firstAttribute="width" secondItem="i7F-fQ-4dw" secondAttribute="width" id="fKS-9V-3z4"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="12" y="465" width="538" height="63"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="9" y="476" width="744" height="63"/>
+                                                </variation>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LhS-d1-8B8" userLabel="Sleep Time Stack View">
                                                 <rect key="frame" x="12" y="562" width="538" height="69"/>
@@ -119,6 +187,13 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="216" y="0.0" width="107" height="21"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <rect key="frame" x="306" y="0.0" width="131" height="21"/>
+                                                        </variation>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-HK-nAC">
                                                         <rect key="frame" x="0.0" y="41" width="538" height="29"/>
@@ -133,11 +208,23 @@
                                                             <segment title="10h"/>
                                                         </segments>
                                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="41" width="538" height="29"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="41" width="744" height="29"/>
+                                                        </variation>
                                                     </segmentedControl>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="hQ7-HK-nAC" firstAttribute="width" secondItem="LhS-d1-8B8" secondAttribute="width" id="mPZ-ww-pDa"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="12" y="562" width="538" height="69"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="9" y="573" width="744" height="69"/>
+                                                </variation>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LNH-QX-92J" userLabel="Prepare Time Stack View">
                                                 <rect key="frame" x="12" y="665" width="538" height="69"/>
@@ -151,6 +238,13 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="156" y="0.0" width="226" height="21"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <rect key="frame" x="233" y="0.0" width="278" height="21"/>
+                                                        </variation>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-Iu-COW">
                                                         <rect key="frame" x="0.0" y="41" width="538" height="29"/>
@@ -163,11 +257,23 @@
                                                             <segment title="2h"/>
                                                         </segments>
                                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="41" width="538" height="29"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="41" width="744" height="29"/>
+                                                        </variation>
                                                     </segmentedControl>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="e0G-Iu-COW" firstAttribute="width" secondItem="LNH-QX-92J" secondAttribute="width" id="SNX-KW-ofv"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="12" y="665" width="538" height="69"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="9" y="676" width="744" height="69"/>
+                                                </variation>
                                             </stackView>
                                         </subviews>
                                         <constraints>
@@ -244,28 +350,50 @@
                                         <variation key="heightClass=compact" fixedFrame="YES">
                                             <rect key="frame" x="-246" y="411" width="560" height="20"/>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                        </variation>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-tI-kdS">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-tI-kdS">
                                         <rect key="frame" x="84" y="214" width="392" height="31"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nzW-sx-USO">
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nzW-sx-USO">
                                                 <rect key="frame" x="0.0" y="0.0" width="157" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notify me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwW-Zy-000">
                                                         <rect key="frame" x="0.0" y="0.0" width="92" height="31"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="92" height="31"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="147" height="31"/>
+                                                        </variation>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-XS-iQU">
                                                         <rect key="frame" x="108" y="0.0" width="51" height="31"/>
                                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="108" y="0.0" width="51" height="31"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="157" y="0.0" width="51" height="31"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="wakeUpOnOffSet:" destination="OLW-h4-3OA" eventType="valueChanged" id="Ieo-yS-P6o"/>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="157" height="31"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="206" height="31"/>
+                                                </variation>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAH-wc-QSC">
                                                 <rect key="frame" x="357" y="0.0" width="35" height="31"/>
@@ -273,6 +401,9 @@
                                                 <state key="normal" title="Edit">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="editWakeUp:" destination="OLW-h4-3OA" eventType="touchUpInside" id="Zam-A7-9ak"/>
                                                 </connections>
@@ -287,6 +418,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <constraints>
@@ -316,6 +450,9 @@
                                         </variation>
                                         <variation key="widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="0.0" y="128" width="728" height="21"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                         </variation>
                                     </label>
                                 </subviews>
