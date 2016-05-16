@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 protocol NotificationSettingsRegistered {
-    func notificationSettingsRegistered(granted: Bool)
+        func notificationSettingsRegistered(granted: Bool)
 }
 
 @UIApplicationMain
@@ -27,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 launchedFromNotification = getNotificationUserInfo(notification)
             }
         }
-
+        Fabric.with([Crashlytics.self])
         // Override point for customization after application launch.
         return true
     }

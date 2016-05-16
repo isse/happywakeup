@@ -16,6 +16,8 @@
 		29850E871C8C7DDC0037A83D /* CurrentWakeUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */; };
 		2998481C1CD648F30081D0D1 /* AlertPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998481B1CD648F30081D0D1 /* AlertPlayer.swift */; };
 		29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D291CA92C0F00DFC05A /* WakeUp.swift */; };
+		29CD51D41CE9ADCF00DD5829 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CD51D21CE9ADCF00DD5829 /* Fabric.framework */; };
+		29CD51D51CE9ADCF00DD5829 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CD51D31CE9ADCF00DD5829 /* Crashlytics.framework */; };
 		29DA990C1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		29850E861C8C7DDC0037A83D /* CurrentWakeUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWakeUpViewController.swift; sourceTree = "<group>"; };
 		2998481B1CD648F30081D0D1 /* AlertPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPlayer.swift; sourceTree = "<group>"; };
 		29B05D291CA92C0F00DFC05A /* WakeUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
+		29CD51D21CE9ADCF00DD5829 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		29CD51D31CE9ADCF00DD5829 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "246390__foolboymedia__chiming-out.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29CD51D51CE9ADCF00DD5829 /* Crashlytics.framework in Frameworks */,
+				29CD51D41CE9ADCF00DD5829 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +54,8 @@
 		29850E681C8C7B920037A83D = {
 			isa = PBXGroup;
 			children = (
+				29CD51D21CE9ADCF00DD5829 /* Fabric.framework */,
+				29CD51D31CE9ADCF00DD5829 /* Crashlytics.framework */,
 				29850E731C8C7B920037A83D /* HappierWakeUp */,
 				29850E721C8C7B920037A83D /* Products */,
 			);
@@ -89,6 +97,7 @@
 				29850E6D1C8C7B920037A83D /* Sources */,
 				29850E6E1C8C7B920037A83D /* Frameworks */,
 				29850E6F1C8C7B920037A83D /* Resources */,
+				29CD51D11CE9ACFA00DD5829 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -146,6 +155,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29CD51D11CE9ACFA00DD5829 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 898ffc169dfeb5f2a15d19a38d8081b107db32d6 b8708783f3b979b64081c64e7c785e9fce790e8736345d053234510a7e3b110b";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		29850E6D1C8C7B920037A83D /* Sources */ = {
@@ -272,6 +297,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HappierWakeUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exampledomain.essivehmersalo.goodmorning;
@@ -286,6 +315,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HappierWakeUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exampledomain.essivehmersalo.goodmorning;

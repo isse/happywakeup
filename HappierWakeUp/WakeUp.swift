@@ -268,4 +268,19 @@ struct WakeUp{
         return wakeUpFromNow
     }
     
+    func answersCustomAttributes() -> [String : AnyObject] {
+        let calendar = (NSCalendar(identifier: NSCalendarIdentifierGregorian))!
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        let dateFlags : NSCalendarUnit = [.Hour, .Minute]
+        let components = calendar.components(dateFlags, fromDate: wakeUpTime)
+        let timeValue = components.hour * 100 + components.minute
+        let repeatValue = repeatOnlyWeekdays ? "weekdays" : "all"
+        return [
+            "wakeUpTime": timeValue,
+            "sleepHours": needHoursOfSleep.rawValue,
+            "timeReadyForBedMinutes": timeReadyForBed.rawValue,
+            "repeat": repeatValue
+        ]    
+    }
 }

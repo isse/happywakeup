@@ -6,6 +6,7 @@
 //  Copyright © 2016 Essi Vehmersalo. All rights reserved.
 //
 import UIKit
+import Crashlytics // If using Answers with Crashlytics
 
 extension UIView {
     func layerGradient(size: CGSize, dark: Bool = true) {
@@ -54,6 +55,16 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
     var updateView: NSTimer?
     var wakeUpTimers: [NSTimer] = []
     
+    let answersItemNameSet = "Wake up set"
+    let answersItemTypeSet = "Wake up set"
+    let answersIdSet = "sku-1"
+
+    let answersItemNameEnable = "Wake up enabled"
+    let answersItemTypeEnable = "Wake up enabled"
+    let answersIdEnable = "sku-2"
+
+    let answersEventDisable = "Disable wake up"
+
     @IBOutlet weak var goodMorningLabel: UILabel!
     @IBOutlet var baseView: UIView!
     @IBOutlet weak var goToBedInLabel: UILabel!
@@ -69,6 +80,21 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         setWakeUpOnOff(wakeUpOn.on)
         currentWakeUp?.isOn = wakeUpOn.on
         storeWakeUp(currentWakeUp!)
+
+        if wakeUpOn.on {
+            Answers.logPurchaseWithPrice(1,
+                                         currency: "USD",
+                                         success: true,
+                                         itemName: answersItemNameEnable,
+                                         itemType: answersItemTypeEnable,
+                                         itemId: answersIdEnable,
+                                         customAttributes: currentWakeUp?.answersCustomAttributes()
+            )
+        } else {
+            Answers.logCustomEventWithName(answersEventDisable,
+                                           customAttributes: currentWakeUp?.answersCustomAttributes())
+        }
+        
     }
 
     override func viewDidLoad() {
@@ -165,6 +191,16 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
         self.currentWakeUp = wakeUp
         updateViewWithWakeUp(wakeUp)
         rescheduleTimers(wakeUp)
+        
+        let attributes = wakeUp.answersCustomAttributes()
+        Answers.logPurchaseWithPrice(1,
+                                     currency: "USD",
+                                     success: true,
+                                     itemName: answersItemNameSet,
+                                     itemType: answersItemTypeSet,
+                                     itemId: answersIdSet,
+                                     customAttributes: attributes
+        )
     }
     
     func rescheduleTimers(wakeUp: WakeUp) {
