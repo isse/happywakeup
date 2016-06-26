@@ -443,6 +443,7 @@
 				296D41691D0D33DC0042C99D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29850E6C1C8C7B920037A83D /* Build configuration list for PBXProject "GoodMorning" */ = {
 			isa = XCConfigurationList;
