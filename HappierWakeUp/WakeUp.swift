@@ -241,10 +241,7 @@ struct WakeUp{
         notification.fireDate = time
         notification.alertBody = message
         notification.alertAction = "Happy wake up"
-        // TODO needs attribution to https://www.freesound.org/people/FoolBoyMedia/sounds/246390/
-        // more https://www.freesound.org/people/Corsica_S/sounds/321389/
-        // https://www.freesound.org/people/mareproduction/sounds/324156/
-        notification.soundName = "246390__foolboymedia__chiming-out.wav"
+        notification.soundName = "alertPianoCut.caf"
         notification.repeatInterval = interval
         notification.userInfo = [WakeUp.notificationUserInfoKey: userInfo]
         return notification

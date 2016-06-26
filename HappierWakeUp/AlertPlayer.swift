@@ -31,7 +31,7 @@ class AlertPlayer: NSObject, AVAudioPlayerDelegate {
 
 
     func playWakeUp() {
-        let path = NSBundle.mainBundle().pathForResource("246390__foolboymedia__chiming-out.wav", ofType:nil)!
+        let path = NSBundle.mainBundle().pathForResource("alertPianoCut.caf", ofType:nil)!
         let url = NSURL(fileURLWithPath: path)
         
         do {

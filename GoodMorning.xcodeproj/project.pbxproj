@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29173EFD1CFB6E040087B332 /* alertPianoCut.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29173EFC1CFB6E040087B332 /* alertPianoCut.caf */; };
+		296D41641D0D33DC0042C99D /* HappierWakeUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D41631D0D33DC0042C99D /* HappierWakeUpTests.swift */; };
 		2983992B1CBBF3F30010B3FD /* ExtendUiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */; };
 		29850E751C8C7B920037A83D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E741C8C7B920037A83D /* AppDelegate.swift */; };
 		29850E771C8C7B920037A83D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29850E761C8C7B920037A83D /* ViewController.swift */; };
@@ -18,10 +20,23 @@
 		29B05D2A1CA92C0F00DFC05A /* WakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B05D291CA92C0F00DFC05A /* WakeUp.swift */; };
 		29CD51D41CE9ADCF00DD5829 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CD51D21CE9ADCF00DD5829 /* Fabric.framework */; };
 		29CD51D51CE9ADCF00DD5829 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CD51D31CE9ADCF00DD5829 /* Crashlytics.framework */; };
-		29DA990C1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		296D41661D0D33DC0042C99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29850E691C8C7B920037A83D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29850E701C8C7B920037A83D;
+			remoteInfo = HappierWakeUp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		29173EFC1CFB6E040087B332 /* alertPianoCut.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alertPianoCut.caf; sourceTree = "<group>"; };
+		296D41611D0D33DC0042C99D /* HappierWakeUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappierWakeUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		296D41631D0D33DC0042C99D /* HappierWakeUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappierWakeUpTests.swift; sourceTree = "<group>"; };
+		296D41651D0D33DC0042C99D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2983992A1CBBF3F30010B3FD /* ExtendUiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendUiViewController.swift; sourceTree = "<group>"; };
 		29850E711C8C7B920037A83D /* HappierWakeUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappierWakeUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29850E741C8C7B920037A83D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,10 +50,16 @@
 		29B05D291CA92C0F00DFC05A /* WakeUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeUp.swift; sourceTree = "<group>"; };
 		29CD51D21CE9ADCF00DD5829 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		29CD51D31CE9ADCF00DD5829 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "246390__foolboymedia__chiming-out.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		296D415E1D0D33DC0042C99D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29850E6E1C8C7B920037A83D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,12 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		296D41621D0D33DC0042C99D /* HappierWakeUpTests */ = {
+			isa = PBXGroup;
+			children = (
+				296D41631D0D33DC0042C99D /* HappierWakeUpTests.swift */,
+				296D41651D0D33DC0042C99D /* Info.plist */,
+			);
+			path = HappierWakeUpTests;
+			sourceTree = "<group>";
+		};
 		29850E681C8C7B920037A83D = {
 			isa = PBXGroup;
 			children = (
 				29CD51D21CE9ADCF00DD5829 /* Fabric.framework */,
 				29CD51D31CE9ADCF00DD5829 /* Crashlytics.framework */,
 				29850E731C8C7B920037A83D /* HappierWakeUp */,
+				296D41621D0D33DC0042C99D /* HappierWakeUpTests */,
 				29850E721C8C7B920037A83D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				29850E711C8C7B920037A83D /* HappierWakeUp.app */,
+				296D41611D0D33DC0042C99D /* HappierWakeUpTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,7 +104,7 @@
 		29850E731C8C7B920037A83D /* HappierWakeUp */ = {
 			isa = PBXGroup;
 			children = (
-				29DA990B1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav */,
+				29173EFC1CFB6E040087B332 /* alertPianoCut.caf */,
 				29850E741C8C7B920037A83D /* AppDelegate.swift */,
 				29850E761C8C7B920037A83D /* ViewController.swift */,
 				29850E781C8C7B920037A83D /* Main.storyboard */,
@@ -90,6 +122,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		296D41601D0D33DC0042C99D /* HappierWakeUpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 296D416A1D0D33DC0042C99D /* Build configuration list for PBXNativeTarget "HappierWakeUpTests" */;
+			buildPhases = (
+				296D415D1D0D33DC0042C99D /* Sources */,
+				296D415E1D0D33DC0042C99D /* Frameworks */,
+				296D415F1D0D33DC0042C99D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				296D41671D0D33DC0042C99D /* PBXTargetDependency */,
+			);
+			name = HappierWakeUpTests;
+			productName = HappierWakeUpTests;
+			productReference = 296D41611D0D33DC0042C99D /* HappierWakeUpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		29850E701C8C7B920037A83D /* HappierWakeUp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29850E831C8C7B920037A83D /* Build configuration list for PBXNativeTarget "HappierWakeUp" */;
@@ -114,10 +164,14 @@
 		29850E691C8C7B920037A83D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Essi Vehmersalo";
 				TargetAttributes = {
+					296D41601D0D33DC0042C99D = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 29850E701C8C7B920037A83D;
+					};
 					29850E701C8C7B920037A83D = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = FHKAQDN7U4;
@@ -138,19 +192,27 @@
 			projectRoot = "";
 			targets = (
 				29850E701C8C7B920037A83D /* HappierWakeUp */,
+				296D41601D0D33DC0042C99D /* HappierWakeUpTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		296D415F1D0D33DC0042C99D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29850E6F1C8C7B920037A83D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				29850E7F1C8C7B920037A83D /* LaunchScreen.storyboard in Resources */,
 				29850E7C1C8C7B920037A83D /* Assets.xcassets in Resources */,
+				29173EFD1CFB6E040087B332 /* alertPianoCut.caf in Resources */,
 				29850E7A1C8C7B920037A83D /* Main.storyboard in Resources */,
-				29DA990C1CB125BE0098FFB4 /* 246390__foolboymedia__chiming-out.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +235,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		296D415D1D0D33DC0042C99D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				296D41641D0D33DC0042C99D /* HappierWakeUpTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29850E6D1C8C7B920037A83D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -187,6 +257,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		296D41671D0D33DC0042C99D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29850E701C8C7B920037A83D /* HappierWakeUp */;
+			targetProxy = 296D41661D0D33DC0042C99D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		29850E781C8C7B920037A83D /* Main.storyboard */ = {
@@ -208,6 +286,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		296D41681D0D33DC0042C99D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = HappierWakeUpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.HappierWakeUpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HappierWakeUp.app/HappierWakeUp";
+			};
+			name = Debug;
+		};
+		296D41691D0D33DC0042C99D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = HappierWakeUpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.HappierWakeUpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HappierWakeUp.app/HappierWakeUp";
+			};
+			name = Release;
+		};
 		29850E811C8C7B920037A83D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -330,6 +436,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		296D416A1D0D33DC0042C99D /* Build configuration list for PBXNativeTarget "HappierWakeUpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				296D41681D0D33DC0042C99D /* Debug */,
+				296D41691D0D33DC0042C99D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		29850E6C1C8C7B920037A83D /* Build configuration list for PBXProject "GoodMorning" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
