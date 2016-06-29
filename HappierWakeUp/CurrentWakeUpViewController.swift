@@ -9,28 +9,6 @@ import UIKit
 import Crashlytics // If using Answers with Crashlytics
 
 extension UIView {
-    func layerGradient(size: CGSize, dark: Bool = true) {
-        let layer : CAGradientLayer = CAGradientLayer()
-        layer.frame = self.bounds
-        layer.frame.size = size
-        layer.frame.origin = CGPointMake(0.0,0.0)
-        layer.startPoint = CGPointMake(0.5, 0.0)
-        layer.endPoint = CGPointMake(0.5, 1.0)
-        
-        let colorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 1.0).CGColor
-        let colorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 1.0).CGColor
-        let lightColorNight = UIColor(red: 0.0/255.0, green: 62.0/255.0, blue: 84.0/255.0, alpha: 0.6).CGColor
-        let lightColorDawn = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 152.0/255.0, alpha: 0.6).CGColor
-
-        if dark {
-            layer.colors = [colorNight, colorDawn]
-        } else {
-            layer.colors = [lightColorDawn, lightColorNight]
-        }
-        layer.locations = [0.0, 1.0]
-        self.layer.insertSublayer(layer, atIndex: 0)
-    }
-
     func addBackground() {
         // screen width and height:
         let width = UIScreen.mainScreen().bounds.size.width
@@ -113,7 +91,6 @@ class CurrentWakeUpViewController: UIViewController, GetNotifiedOfWakeUp, Notifi
             object: nil)
 
         self.view.addBackground()
-        //self.view.layerGradient(baseView.frame.size)
         // Do any additional setup after loading the view, typically from a nib.
         
         let storedWakeUp = NSUserDefaults.standardUserDefaults().objectForKey(storageKey)
